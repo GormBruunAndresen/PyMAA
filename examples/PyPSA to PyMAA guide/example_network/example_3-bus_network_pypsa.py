@@ -8,12 +8,12 @@ Created on Mon Sep  4 11:32:24 2023
     
     
 Description:
-    This is an example network which is exported for use with PyMGA to perform
+    This is an example network which is exported for use with PyMAA to perform
     an MAA analysis. As an example network, the values of costs and other system parameters are
     chosen to produce a dynamic near-optimal space for illustrative purposes,
     and are not at all accurate.
     This system does not need to be solved, only exported as a .nc file for use
-    with PyMGA. 
+    with PyMAA. 
 """
 
 import pandas as pd
@@ -89,7 +89,7 @@ network.add("Load",
 
 network.export_to_netcdf('example_3-bus_network.nc')
 
-# OPTIONAL: Solve the network. Not needed for PyMGA.
+# OPTIONAL: Solve the network. Not needed for PyMAA.
 # network.lopf(pyomo = False, 
 #               solver_name = 'gurobi',
 #               formulation="kirchhoff",

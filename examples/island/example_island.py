@@ -15,12 +15,12 @@ Description:
 import os
 import sys
 
-# Add parent folder to directory to load PyMGA package
+# Add parent folder to directory to load PyMAA package
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.append(parent_dir)
 
-import PyMGA
-from PyMGA.utilities.plot import near_optimal_space_2D, near_optimal_space_matrix
+import PyMAA
+from PyMAA.utilities.plot import near_optimal_space_2D, near_optimal_space_matrix
 import numpy as np
 import yaml
 import pandas as pd
@@ -154,30 +154,30 @@ if __name__ == '__main__':
         marry_links(n)
         area_constraint(n)
 
-    #### PyMGA ####
-    # PyMGA: Build case from PyPSA network
-    case = PyMGA.cases.PyPSA_to_case(config, 
+    #### PyMAA ####
+    # PyMAA: Build case from PyPSA network
+    case = PyMAA.cases.PyPSA_to_case(config, 
                                       network,
                                       extra_func = extra_func,
                                       variables = variables,
                                       mga_slack = 0.1,
                                       n_snapshots = 8760)
     
-    # PyMGA: Choose MAA method
-    method = PyMGA.methods.MAA(case)
+    # PyMAA: Choose MAA method
+    method = PyMAA.methods.MAA(case)
     
-    # PyMGA: Solve optimal system
+    # PyMAA: Solve optimal system
     opt_sol, obj, n_opt = method.find_optimum()
     
-    # PyMGA: Search near-optimal space using chosen method
+    # PyMAA: Search near-optimal space using chosen method
     verticies, directions, _, _ = method.search_directions(14, n_workers = 16)
 
-    # # PyMGA: Sample the identified near-optimal space
-    har_samples = PyMGA.sampler.har_sample(1_000_000, x0 = np.zeros(len(variables.keys())), 
+    # # PyMAA: Sample the identified near-optimal space
+    har_samples = PyMAA.sampler.har_sample(1_000_000, x0 = np.zeros(len(variables.keys())), 
                                             directions = directions, 
                                             verticies = verticies)
     
-    bayesian_samples = PyMGA.sampler.bayesian_sample(1_000_000, verticies)
+    bayesian_samples = PyMAA.sampler.bayesian_sample(1_000_000, verticies)
 
 
     # #### Process results ####

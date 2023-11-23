@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-setup(name='PyMGA',
+setup(name='PyMAA',
       version='0.1.2',
       description='A Python library for Modeling All Alternatives',
       url='https://github.com/LukasBNordentoft/PyMGA_LBN',

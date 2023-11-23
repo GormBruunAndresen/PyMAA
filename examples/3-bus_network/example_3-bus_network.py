@@ -7,18 +7,18 @@ Created on 29/8/2023
     Anders L. Andreasen, ala@mpe.au.dk
     
 Description:
-    Exmple use of PyMGA to explore a network with 3 buses.
+    Exmple use of PyMAA to explore a network with 3 buses.
 """
 
 import os
 import sys
 
-# Add parent folder to directory to load PyMGA package
+# Add parent folder to directory to load PyMAA package
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.append(parent_dir)
 
-import PyMGA
-from PyMGA.utilities.plot import near_optimal_space_matrix
+import PyMAA
+from PyMAA.utilities.plot import near_optimal_space_matrix
 import yaml
 
 #%%
@@ -50,26 +50,26 @@ if __name__ == '__main__':
                   #       'e_nom',],
                     } 
 
-    #### PyMGA #### -----------------------------------------------------------
-    # PyMGA: Build case from PyPSA network
-    case = PyMGA.cases.PyPSA_to_case(config, 
+    #### PyMAA #### -----------------------------------------------------------
+    # PyMAA: Build case from PyPSA network
+    case = PyMAA.cases.PyPSA_to_case(config, 
                                      network,
                                      variables = variables,
                                      mga_slack = 0.1,
                                      )
     
-    # PyMGA: Choose MAA method
-    method = PyMGA.methods.bMAA(case)
+    # PyMAA: Choose MAA method
+    method = PyMAA.methods.bMAA(case)
     
-    # PyMGA: Solve optimal system
+    # PyMAA: Solve optimal system
     opt_sol, obj, n_solved = method.find_optimum()
 
-    # PyMGA: Search near-optimal space using chosen method
+    # PyMAA: Search near-optimal space using chosen method
     vertices, directions, _, _ = method.search_directions(n_boundary_points,
                                                            n_workers = 16)
-    # PyMGA: Sample the identified near-optimal space
+    # PyMAA: Sample the identified near-optimal space
     # Bayesian bootstrap sampler, good up to around 8 dimensions
-    bayesian_samples = PyMGA.sampler.bayesian_sample(1_000_000, vertices) 
+    bayesian_samples = PyMAA.sampler.bayesian_sample(1_000_000, vertices) 
 
 
     #### Processing results #### ----------------------------------------------
@@ -85,10 +85,10 @@ if __name__ == '__main__':
     
     #%%
     
-    from PyMGA.utilities.general import calculate_cheb
+    from PyMAA.utilities.general import calculate_cheb
     cheb_center, cheb_radius = calculate_cheb(vertices, directions)
 
-    from PyMGA.utilities.plot import near_optimal_space_slice
+    from PyMAA.utilities.plot import near_optimal_space_slice
     
     near_optimal_space_slice(all_variables, ['x1', 'x2'], 
                              vertices, bayesian_samples,

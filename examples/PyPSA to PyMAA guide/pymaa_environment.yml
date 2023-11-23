@@ -1,10 +1,11 @@
-name: pymga_environment
+name: pymaa_environment
 channels:
   - defaults
   - conda-forge
   - pypi
 dependencies:
   - python=3.8
+  - PyMAA
   - numpy>=1.22
   - pypsa>=0.21
   - matplotlib
