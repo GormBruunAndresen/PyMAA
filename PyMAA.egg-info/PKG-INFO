@@ -3,7 +3,7 @@ Name: PyMAA
 Version: 0.1.2
 Summary: A Python library for Modeling All Alternatives
 Home-page: https://github.com/LukasBNordentoft/PyMAA_LBN
-Download-URL: 
+Download-URL: https://github.com/LukasBNordentoft/PyMAA/archive/refs/tags/v0.1.2.tar.gz
 Author: Tim Pedersen
 Author-email: timtoernes@gmail.com
 Maintainer: Lukas B. Nordentoft

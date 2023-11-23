@@ -46,8 +46,13 @@ def near_optimal_space_matrix(variables, vertices, samples = None,
                               plot_vertices = False, plot_boundary = True,
                               filename = None, 
                               ):
-    # Take a multi-dimensional MAA polyhedron, and plot each "side" in 2D.
-    # Plot the polyhedron shape, samples within and correlations.
+    '''
+    A function for plotting the 2D projection of each dimension pair of an
+    n-dimensional polytope, for use with near-optimal spaces.
+    If samples are provided, also plot the sample distribution for each 
+    dimension and correlation between each dimension pair. Can also plot the
+    optimal solution and Chebyshev center if given.
+    '''
     import pandas as pd
     import matplotlib.pyplot as plt
     from scipy.spatial import ConvexHull
@@ -140,7 +145,7 @@ def near_optimal_space_matrix(variables, vertices, samples = None,
             ax.set_ylabel(ylabel, color = 'gray', size = 16)
         else:
             ax.set_ylabel('Proportion', color = 'gray', size = 16)
-            ax.set_xlabel('Capcity [GW]', color = 'gray', size = 16)
+            ax.set_xlabel('Value', color = 'gray', size = 16)
         
         # If samples are provided, calculate and plot histogram
         if samples is not None:
@@ -290,8 +295,13 @@ def near_optimal_space_slice(all_variables, chosen_variables,
                           opt_solution = None, cheb_center = None,
                           filename = None,
                  ):
-    # Take a multi-dimensional MAA polyhedron, and plot each "side" in 2D.
-    # Plot the polyhedron shape, samples within and correlations.
+    '''
+    A function for plotting the 2D projection of two specific dimensions of a
+    n-dimensional polytope, for use with near-optimal spaces. Plots the 
+    near-optimal spaces, sample density and distributions for each dimension.
+    Can also plot the optimal solution and Chebyshev center if given.
+
+    '''
     import pandas as pd
     import matplotlib.pyplot as plt
     from scipy.spatial import ConvexHull

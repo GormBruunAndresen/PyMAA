@@ -7,7 +7,7 @@ import gc
 import os
 import pypsa
 from pypsa.descriptors import nominal_attrs
-from pypsa.linopf import lookup, network_lopf, ilopf
+from pypsa.linopf import lookup
 from pypsa.linopt import (
     define_constraints,
     get_var,
@@ -15,8 +15,6 @@ from pypsa.linopt import (
     write_bound,
     write_objective,
     join_exprs,
-    get_dual,
-    get_con,
     get_sol,
     define_variables,
 )
@@ -38,63 +36,6 @@ def patch_pyomo_tmpdir(tmpdir):
     from pyutilib.services import TempfileManager
     TempfileManager.tempdir = tmpdir
 
-def prepare_network(n, solve_opts=None):
-    if solve_opts is None:
-        solve_opts = snakemake.config['solving']['options']
-
-    if snakemake.config['foresight']=='myopic':
-        add_land_use_constraint(n)
-
-    return n
-
-
-def add_land_use_constraint(n):
-    if 'm' in snakemake.wildcards.clusters:
-        # if generators clustering is lower than network clustering, land_use
-        # accounting is at generators clusters
-        for carrier in ['solar', 'onwind', 'offwind-ac', 'offwind-dc']:
-            existing_capacities = n.generators.loc[n.generators.carrier==carrier,"p_nom"]
-            ind=list(set([i.split(sep=" ")[0] + ' ' + i.split(sep=" ")[1] for i in existing_capacities.index]))
-            previous_years= [str(y) for y in 
-                             snakemake.config["scenario"]["planning_horizons"] 
-                             + snakemake.config["existing_capacities"]["grouping_years"]
-                             if y < int(snakemake.wildcards.planning_horizons)]
-            for p_year in previous_years:
-                ind2 = [i for i in ind if  i + " " + carrier + "-" + p_year in existing_capacities.index]
-                n.generators.loc[[i + " " + carrier + "-" + snakemake.wildcards.planning_horizons for i in ind2], "p_nom_max"] -= existing_capacities.loc[[i + " " + carrier + "-" + p_year for i in ind2]].rename(lambda x: x[:-4]+snakemake.wildcards.planning_horizons) 
-    else:
-        #warning: this will miss existing offwind which is not classed AC-DC and has carrier 'offwind'
-        for carrier in ['solar', 'onwind', 'offwind-ac', 'offwind-dc']:
-            existing_capacities = n.generators.loc[n.generators.carrier==carrier,"p_nom"].groupby(n.generators.bus.map(n.buses.location)).sum()
-            existing_capacities.index += " " + carrier + "-" + snakemake.wildcards.planning_horizons
-            n.generators.loc[existing_capacities.index,"p_nom_max"] -= existing_capacities
-
-    n.generators.p_nom_max[n.generators.p_nom_max<0]=0.
-
-
-def assign_carriers(n):
-    """
-    Author: Fabian Neumann 
-    Source: https://github.com/PyPSA/pypsa-eur-mga
-    """
-
-    if "Load" in n.carriers.index:
-        n.carriers = n.carriers.drop("Load")
-
-    if "carrier" not in n.lines:
-        n.lines["carrier"] = "AC"
-
-    if n.links.empty:
-        n.links["carrier"] = pd.Series(dtype=str)
-
-    config = {
-        "AC": {"color": "rosybrown", "nice_name": "HVAC Line"},
-        "DC": {"color": "darkseagreen", "nice_name": "HVDC Link"},
-    }
-    for c in ["AC", "DC"]:
-        if c in n.carriers.index:
-            continue
-        n.carriers = n.carriers.append(pd.Series(config[c], name=c))
 
 def define_mga_constraint(n, sns, epsilon=None, with_fix=False):
     """

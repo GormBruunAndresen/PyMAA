@@ -12,19 +12,11 @@ Description:
     This example include custom constraints being defined using extra_func.
 """
 
-import os
-import sys
-
-# Add parent folder to directory to load PyMAA package
-parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-sys.path.append(parent_dir)
-
 import PyMAA
-from PyMAA.utilities.plot import near_optimal_space_2D, near_optimal_space_matrix
+from PyMAA.utilities.plot import near_optimal_space_matrix
 import numpy as np
 import yaml
 import pandas as pd
-import pypsa
 
 
 if __name__ == '__main__':
@@ -170,30 +162,24 @@ if __name__ == '__main__':
     opt_sol, obj, n_opt = method.find_optimum()
     
     # PyMAA: Search near-optimal space using chosen method
-    verticies, directions, _, _ = method.search_directions(14, n_workers = 16)
+    vertices, directions, _, _ = method.search_directions(14, n_workers = 16)
 
     # # PyMAA: Sample the identified near-optimal space
     har_samples = PyMAA.sampler.har_sample(1_000_000, x0 = np.zeros(len(variables.keys())), 
                                             directions = directions, 
-                                            verticies = verticies)
+                                            verticies = vertices)
     
-    bayesian_samples = PyMAA.sampler.bayesian_sample(1_000_000, verticies)
+    bayesian_samples = PyMAA.sampler.bayesian_sample(1_000_000, vertices)
 
 
     # #### Process results ####
-    # Plot near-optimal space of Data (x1) and P2X (x2)
-    all_variables    = list(variables.keys())
-    # chosen_variables = ['x1', 'x2']
-    # near_optimal_space_2D(all_variables, chosen_variables,
-    #                       verticies, MAA_samples,
-    #                       plot_MAA_points = True,
-    #                       bins = 50)
-    
-    # # Matrix plot of 2D "sides" of polytope, with histograms and correlations
-    near_optimal_space_matrix(all_variables, verticies, har_samples,
-                              xlabel = 'Unit []', ylabel = 'Unit []',
+    # # Matrix plots using both sample types
+    near_optimal_space_matrix(variables = list(variables.keys()), 
+                              vertices = vertices, 
+                              samples = har_samples,
                               opt_solution = opt_sol)
     
-    near_optimal_space_matrix(all_variables, verticies, bayesian_samples,
-                              xlabel = 'Unit []', ylabel = 'Unit []',
+    near_optimal_space_matrix(variables = list(variables.keys()), 
+                              vertices = vertices, 
+                              samples = bayesian_samples,
                               opt_solution = opt_sol)
