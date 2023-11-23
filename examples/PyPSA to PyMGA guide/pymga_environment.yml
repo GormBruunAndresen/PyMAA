@@ -1,0 +1,16 @@
+name: pymga_environment
+channels:
+  - defaults
+  - conda-forge
+  - pypi
+dependencies:
+  - python=3.8
+  - numpy>=1.22
+  - pypsa>=0.21
+  - matplotlib
+  - pandas
+  - pyyaml
+  - chaospy>=3.3
+  - scipy
+  - dask>=2022.12
+  - dask-jobqueue>=0.8

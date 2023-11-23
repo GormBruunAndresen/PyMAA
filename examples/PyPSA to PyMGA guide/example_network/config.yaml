@@ -1,0 +1,31 @@
+
+solving:
+  tmpdir: 'scratch/$SLURM_JOB_ID' #'scratch/'
+  #$SLURM_JOBID/
+  #"/home/marta/tmp/" 
+  
+  
+  options:
+    formulation: kirchhoff
+    load_shedding: false
+    noisy_costs: false
+
+    min_iterations: 1
+    max_iterations: 1
+    # nhours: 1
+
+  solver:
+    name: gurobi
+    threads: 2
+    method: 2 # barrier
+    crossover: 0
+    BarConvTol: 1.e-6
+    Seed: 123
+    AggFill: 0
+    PreDual: 0
+    GURO_PAR_BARDENSETHRESH: 200
+    LogToConsole: 0
+    FeasibilityTol: 1.e-6
+
+  mem: 100000 #memory in MB; 20 GB enough for 50+B+I+H2; 100 GB for 181+B+I+H2
+
