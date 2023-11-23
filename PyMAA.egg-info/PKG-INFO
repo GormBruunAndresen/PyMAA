@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: PyMAA
+Version: 0.1.2
+Summary: A Python library for Modeling All Alternatives
+Home-page: https://github.com/LukasBNordentoft/PyMAA_LBN
+Download-URL: 
+Author: Tim Pedersen
+Author-email: timtoernes@gmail.com
+Maintainer: Lukas B. Nordentoft
+Maintainer-email: lukasBnordentoft@gmail.com
+License: MIT
+Keywords: Modelling To Generate Alterantives,Modeling All Alternatives,Near-optimal space
+License-File: license.txt
