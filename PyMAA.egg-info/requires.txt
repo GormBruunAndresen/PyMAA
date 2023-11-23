@@ -7,4 +7,5 @@ chaospy>=3.3
 scipy
 dask>=2022.12
 polytope
+seaborn
 dask-jobqueue>=0.8
