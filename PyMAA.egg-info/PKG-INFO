@@ -1,9 +1,9 @@
 Metadata-Version: 2.1
 Name: PyMAA
-Version: 0.1.3
+Version: 0.1.4
 Summary: A Python library for Modeling All Alternatives
 Home-page: https://github.com/LukasBNordentoft/PyMAA_LBN
-Download-URL: https://github.com/LukasBNordentoft/PyMAA/archive/refs/tags/v0.1.3.tar.gz
+Download-URL: https://github.com/LukasBNordentoft/PyMAA/archive/refs/tags/v0.1.4.tar.gz
 Author: Tim Pedersen
 Author-email: timtoernes@gmail.com
 Maintainer: Lukas B. Nordentoft
