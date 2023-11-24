@@ -24,6 +24,12 @@ Successfully built PyMAA
 
 The package is now available for system wide use
 
+### Environemnt
+
+```
+conda env create -f pymaa_environment.yml
+```
+
 ## PyMAA.methods
 
 #### PyMAA.methods.MGA(case)
@@ -67,7 +73,17 @@ Finds the cost optimal solution of the case object given
 
 **PyMAA.cases.PyPSA_to_case()**<br>
 
-Needs update
+General case for creating case objects from PyPSA networks.
+
+*config:* Dict with solver options
+
+*base_network_path:* path to a saved PyPSA network. must be saved as ```.nc``` file.
+
+*extra_func:* Extra functionalities. Pass extra constraints here, as in PyPSA.
+
+*variables:* Dict of variables to explore using the MAA analysis
+
+*mga_slack:* Slack on objective function value to use for MAA analysis.
 
 **PyMAA.cases.Cube(dim,cuts)**<br>
 A synthetic tescase of testing MGA/MAA methods. The method creates an optimization problem with a solution space in the form of a cube sliced with n cuts. <br>

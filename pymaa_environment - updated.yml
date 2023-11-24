@@ -1,0 +1,22 @@
+name: pymaa_environment2
+channels:
+  - defaults
+  - conda-forge
+  - gurobi
+dependencies:
+  - python>=3.11
+  - polytope
+  - numpy>=1.22
+  - pypsa
+  - matplotlib
+  - pandas
+  - pyyaml
+  - chaospy>=3.3
+  - scipy
+  - dask>=2022.12
+  - dask-jobqueue>=0.8
+  - gurobi>=9.5
+  - pip
+  - pip:
+    - PyMAA
+    - xarray>=2023.11.0
