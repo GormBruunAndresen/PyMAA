@@ -6,14 +6,15 @@ Created on Mon Sep  4 11:32:24 2023
     Lukas B. Nordentoft, lbn@mpe.au.dk
     Anders L. Andreasen, ala@mpe.au.dk
     
-    
 Description:
     This is an example network which is exported for use with PyMAA to perform
-    an MAA analysis. As an example network, the values of costs and other system parameters are
-    chosen to produce a dynamic near-optimal space for illustrative purposes,
-    and are not at all accurate.
-    This system does not need to be solved, only exported as a .nc file for use
-    with PyMAA. 
+    an MAA analysis. As an example network, the values of costs and other 
+    system parameters are chosen to produce a dynamic near-optimal space for 
+    illustrative purposes, and are not at all accurate. This system does not 
+    need to be solved, only exported as a .nc file for use with PyMAA. 
+    
+    The network consists of connected 3 buses. One bus with a load, one with a
+    coalplant, and one with the renewable generators wind and PV. 
 """
 
 import pandas as pd
@@ -84,8 +85,9 @@ network.add("Store",
 # Add a load (demand)
 network.add("Load",
             "ElectricityLoad",
-            bus="DemandBus",
-            p_set=1000)  # Hourly demand in MW (constant for simplicity)
+            bus   = "DemandBus",
+            p_set = 1000, # Hourly demand in MW (constant for simplicity)
+            )
 
 network.export_to_netcdf('example_3-bus_network.nc')
 
@@ -95,4 +97,3 @@ network.export_to_netcdf('example_3-bus_network.nc')
 #               formulation="kirchhoff",
 #               keep_shadowprices = True, # Keep dual-values
 #               )
-
