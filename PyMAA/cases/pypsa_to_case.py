@@ -38,6 +38,7 @@ class PyPSA_to_case:
     MGA/MAA/bMAA algorithms in the PyMGA package.
     '''
     def __init__(self,
+                 project_name,
                  config,
                  base_network_path,
                  extra_func = None,
@@ -49,12 +50,13 @@ class PyPSA_to_case:
         # network to disk.
         
         # Set attributes
-        self.variables = variables
-        self.base_network_path = base_network_path
-        self.network_path = tmp_network_path
-        self.config_path = 'networks/config.yaml'
-        self.config = config
-        self.extra_func = extra_func
+        self.project_name       = project_name
+        self.variables          = variables
+        self.base_network_path  = base_network_path
+        self.network_path       = tmp_network_path
+        self.config_path        = 'networks/config.yaml'
+        self.config             = config
+        self.extra_func         = extra_func
 
         self.n_snapshots = n_snapshots
         self.start_point = 0

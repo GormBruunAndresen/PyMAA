@@ -1,6 +1,7 @@
 import os
 import numpy as np
 import time
+import pickle
 from scipy.spatial import ConvexHull
 from ..utilities.general import solve_direcitons
 from ..utilities.dask_helpers import start_dask_cluster
@@ -12,6 +13,7 @@ class MAA:
         """
         self.case = case
         self.dim = len(case.variables)
+        self.project_name = case.project_name
 
     def find_optimum(self):
         """ 
@@ -26,7 +28,12 @@ class MAA:
 
         return self.opt_sol, self.obj, n_solved
 
-    def search_directions(self, n_samples, n_workers=4, max_iter=20):
+    def search_directions(self, 
+                          n_samples, 
+                          n_workers=4, 
+                          max_iter=20,
+                          save_tmp_results = True,
+                          ):
         
         print('\n PyMGA: Searching near-optimal space using MAA method \n')
         start_time = time.time()
@@ -100,6 +107,23 @@ class MAA:
             print(f"""Iteration #{i},
                     total verticies {len(verticies)},
                     eps: {epsilon:.2f}""")
+                    
+            # Save temporary results 
+            if save_tmp_results:
+                tmp_results = {}
+                tmp_results['project_name']   = self.project_name
+                tmp_results['vertices']       = verticies
+                tmp_results['directions']     = directions
+                tmp_results['epsilon']        = epsilon
+                tmp_results['Method']         = 'MAA'
+                
+                # Create tmp folder if it does not exist
+                if not os.path.exists('tmp_results'):
+                    os.makedirs('tmp_results')
+                
+                # Export tmp results as pickle
+                with open(f'tmp_results/tmp_results_{self.project_name}.pkl', 'wb') as file:
+                    pickle.dump(tmp_results, file)
                     
         end_time = time.time()
         print(f'\n PyMGA: Finished searching using MAA method \n Time used: {round(end_time - start_time,2)} s \n')

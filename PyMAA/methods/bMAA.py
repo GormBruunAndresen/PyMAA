@@ -1,6 +1,7 @@
 import numpy as np
 import os
 import time
+import pickle
 from ..utilities.general import (solve_direcitons,
                                  DirectionSampler,
                                  check_large_volume,
@@ -13,10 +14,11 @@ from ..sampler.sampler import har_sample
 class bMAA:
     def __init__(self, case):
         """
-        """
+        """ 
         self.case = case
         self.dim = len(case.variables)
-
+        self.project_name = case.project_name
+        
     def find_optimum(self):
         """ 
         """
@@ -35,7 +37,9 @@ class bMAA:
                           har_samples=5000,
                           n_workers=4,
                           max_iter=30,
-                          tol=0.99):
+                          tol=0.99,
+                          save_tmp_results = True,
+                          ):
         print('\n PyMGA: Searching near-optimal space using bMAA method \n')
         start_time = time.time()
         
@@ -117,6 +121,23 @@ class bMAA:
             print(f"""Iteration #{i},
                    total verticies {len(directions)},
                    acceptance rate {acc_rate:.3f}""")
+
+            # Save temporary results 
+            if save_tmp_results:
+                tmp_results = {}
+                tmp_results['project_name']   = self.project_name
+                tmp_results['vertices']       = verticies
+                tmp_results['directions']     = directions
+                tmp_results['acc_rate']       = acc_rate
+                tmp_results['Method']         = 'bMAA'
+                
+                # Create tmp folder if it does not exist
+                if not os.path.exists('tmp_results'):
+                    os.makedirs('tmp_results')
+                
+                # Export tmp results as pickle
+                with open(f'tmp_results/tmp_results_{self.project_name}.pkl', 'wb') as file:
+                    pickle.dump(tmp_results, file)
 
             if acc_rate > tol:
                 break
