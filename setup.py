@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
 setup(name='PyMAA',
-      version='0.1.6',
+      version='0.1.7',
       description='A Python library for Modeling All Alternatives',
       url='https://github.com/LukasBNordentoft/PyMAA_LBN',
-      download_url = 'https://github.com/LukasBNordentoft/PyMAA/archive/refs/tags/v0.1.6.tar.gz',
+      download_url = 'https://github.com/LukasBNordentoft/PyMAA/archive/refs/tags/v0.1.7.tar.gz',
       author='Tim Pedersen',
       author_email='timtoernes@gmail.com',
       maintainer = 'Lukas B. Nordentoft',
@@ -25,6 +25,5 @@ setup(name='PyMAA',
                         'dask>=2022.12',
                         'polytope',
                         'seaborn',
-                        'pickle',
                         'dask-jobqueue>=0.8'],
       zip_safe=False)
