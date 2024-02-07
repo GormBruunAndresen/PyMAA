@@ -2,6 +2,7 @@ import numpy as np
 import os
 import time
 import pickle
+import pandas as pd
 from ..utilities.general import (solve_direcitons,
                                  DirectionSampler,
                                  check_large_volume,
@@ -17,7 +18,6 @@ class bMAA:
         """ 
         self.case = case
         self.dim = len(case.variables)
-        self.project_name = case.project_name
         
     def find_optimum(self):
         """ 
@@ -26,7 +26,8 @@ class bMAA:
         start_time = time.time()
         print('\n PyMGA: Finding optimal system \n')
         self.obj, opt_sol, n_solved = self.case.solve()
-        self.opt_sol = list(opt_sol.values())[:self.dim]
+        self.opt_sol = pd.DataFrame([list(opt_sol.values())[:self.dim]], 
+                                    columns = self.case.variables)
         end_time = time.time()
         print(f'\n PyMGA: Optimal system found \n obj. value: {round(self.obj,2)} \n Time used: {round(end_time - start_time,2)}\n')
 
@@ -64,12 +65,12 @@ class bMAA:
                                                 np.ones((1, dim)),
                                                 -np.ones((1, dim))))
                 directions = new_directions.copy()
-                verticies = np.empty(shape=[0, dim])
+                vertices = np.empty(shape=[0, dim])
                 sol_fullD = np.empty(shape=[0, dim_fullD])
             else:
                 print('searcing for new directions')
                 max_iter = int(os.cpu_count())*4
-                new_directions = find_new_directions(verticies,
+                new_directions = find_new_directions(vertices,
                                                      directions,
                                                      samples,
                                                      acc_small,
@@ -85,48 +86,48 @@ class bMAA:
 
             # Solve directions
             print(f'searching in {len(new_directions)} directions')
-            verticies, sol_fullD, stat, cost = solve_direcitons(new_directions,
+            vertices, sol_fullD, stat, cost = solve_direcitons(new_directions,
                                                                 self.case,
                                                                 client,
-                                                                verticies,
+                                                                vertices,
                                                                 sol_fullD,
                                                                 stat,
                                                                 cost)
             print('checking validity of samples')
             test = []
-            for v in verticies:
+            for v in vertices:
                 test.append(check_large_volume(directions,
-                                               verticies,
+                                               vertices,
                                                v,
                                                2000))
             violators = np.where(~np.array(test))[0]
 
             if len(violators) > 0:
                 print(f'Deleting {len(violators)} violators')
-                verticies = np.delete(verticies, violators, axis=0)
+                vertices = np.delete(vertices, violators, axis=0)
                 directions = np.delete(directions, violators, axis=0)
 
             # Hit and run sample
             print(f'Hit and run sampling, {har_samples} samples')
-            x0 = calc_x0(directions, verticies)
-            samples = har_sample(har_samples, x0, directions, verticies)
+            x0 = calc_x0(directions, vertices)
+            samples = har_sample(har_samples, x0, directions, vertices)
 
             # Find acceptance rate
             acc_small = []
             for i in range(len(samples)):
-                acc_small.append(check_small_volume(verticies, samples[i]))
+                acc_small.append(check_small_volume(vertices, samples[i]))
 
             acc_rate = np.mean(acc_small)
 
             print(f"""Iteration #{i},
-                   total verticies {len(directions)},
+                   total vertices {len(directions)},
                    acceptance rate {acc_rate:.3f}""")
 
             # Save temporary results 
             if save_tmp_results:
                 tmp_results = {}
-                tmp_results['project_name']   = self.project_name
-                tmp_results['vertices']       = verticies
+                tmp_results['project_name']   = self.case.project_name
+                tmp_results['vertices']       = vertices
                 tmp_results['directions']     = directions
                 tmp_results['acc_rate']       = acc_rate
                 tmp_results['Method']         = 'bMAA'
@@ -136,7 +137,7 @@ class bMAA:
                     os.makedirs('tmp_results')
                 
                 # Export tmp results as pickle
-                with open(f'tmp_results/tmp_results_{self.project_name}.pkl', 'wb') as file:
+                with open(f'tmp_results/tmp_results_{self.case.project_name}.pkl', 'wb') as file:
                     pickle.dump(tmp_results, file)
 
             if acc_rate > tol:
@@ -149,10 +150,14 @@ class bMAA:
         end_time = time.time()
         print(f'\n PyMGA: Finished searching using bMAA method \n Time used: {round(end_time - start_time,2)} s \n')
             
-        return verticies, directions, stat, cost
+        # Convert to dataframes
+        vertices   = pd.DataFrame(vertices, columns = self.case.variables)
+        directions = pd.DataFrame(directions, columns = self.case.variables)
+        
+        return vertices, directions, stat, cost
 
 
-def find_new_directions(verticies,
+def find_new_directions(vertices,
                         directions,
                         samples,
                         acc_small,
@@ -161,7 +166,7 @@ def find_new_directions(verticies,
                         min_count=1):
     """ Find new directions that result in the largest 
     number of rejected samples
-    verticies: The verticies found with MAA method
+    vertices: The vertices found with MAA method
     directions: Directions used in the MAA 
     samples: Hit-and-Run samples
     client: DASK client 
@@ -173,7 +178,7 @@ def find_new_directions(verticies,
     # Initialize 
     updated_directions = directions
     new_directions = np.empty((0, directions.shape[1]))
-    updated_verticies = verticies
+    updated_vertices = vertices
     count = np.inf
     n_iter = 0
     # Samples that are between the two bounds
@@ -182,7 +187,7 @@ def find_new_directions(verticies,
 
     while count > min_count and n_iter < max_iter:
 
-        res = select_best_direction(updated_verticies,
+        res = select_best_direction(updated_vertices,
                                     updated_directions,
                                     samples_remaining,
                                     client,
@@ -193,7 +198,7 @@ def find_new_directions(verticies,
 
         updated_directions = np.concatenate((updated_directions, [best_dir]))
         new_directions = np.concatenate((new_directions, [best_dir]))
-        updated_verticies = np.concatenate((updated_verticies, [v_best]))
+        updated_vertices = np.concatenate((updated_vertices, [v_best]))
 
         print(f'Rejecting {count},samples, #iter {n_iter},max k {0:.2f}')
         n_iter += 1 
@@ -201,14 +206,14 @@ def find_new_directions(verticies,
     return new_directions
 
 
-def select_best_direction(verticies,
+def select_best_direction(vertices,
                           directions,
                           samples,
                           client,
                           n_new=500,
                           n_samples=5000):
     """ Find the direction resulting in the largest number of rejected samples
-    verticies: The verticies found with MAA method
+    vertices: The vertices found with MAA method
     directions: Directions used in the MAA 
     samples: Hit-and-Run samples
     client: DASK client 
@@ -220,14 +225,14 @@ def select_best_direction(verticies,
     """
 
     # Random directions
-    dir_sampler = DirectionSampler(verticies.shape[1], rule='random')
+    dir_sampler = DirectionSampler(vertices.shape[1], rule='random')
     test_directions = dir_sampler.draw_dir(n_new)
 
     counts = []
 
     # Find the vertex, furthest in direction of the dir_i
-    idx = np.argmax(-test_directions@verticies.T, axis=1)
-    v = verticies[idx]
+    idx = np.argmax(-test_directions@vertices.T, axis=1)
+    v = vertices[idx]
     # Compute the number of samples rejected for each direction
     for i in range(n_new):
         samples_rejected = sum(test_directions[i]@(samples-v[i]).T < 0)
@@ -236,7 +241,7 @@ def select_best_direction(verticies,
     # Select the best direction
     idx_best_dir = np.argmax(counts)
     best_dir = test_directions[idx_best_dir]
-    v_best = verticies[idx[idx_best_dir]]
+    v_best = vertices[idx[idx_best_dir]]
     
     # Fin the remaining samples
     samples_remaining = samples[[best_dir@(s-v_best) > 0 for s in samples]]

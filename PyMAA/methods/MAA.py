@@ -2,6 +2,7 @@ import os
 import numpy as np
 import time
 import pickle
+import pandas as pd
 from scipy.spatial import ConvexHull
 from ..utilities.general import solve_direcitons
 from ..utilities.dask_helpers import start_dask_cluster
@@ -13,7 +14,6 @@ class MAA:
         """
         self.case = case
         self.dim = len(case.variables)
-        self.project_name = case.project_name
 
     def find_optimum(self):
         """ 
@@ -22,7 +22,8 @@ class MAA:
         print('\n PyMGA: Finding optimal system \n')
         start_time = time.time()
         self.obj, opt_sol, n_solved = self.case.solve()
-        self.opt_sol = list(opt_sol.values())[:self.dim]
+        self.opt_sol = pd.DataFrame([list(opt_sol.values())[:self.dim]], 
+                                    columns = self.case.variables)
         end_time = time.time()
         print(f'\n PyMGA: Optimal system found \n obj. value: {round(self.obj,2)} \n Time used: {round(end_time - start_time,2)}\n')
 
@@ -50,7 +51,7 @@ class MAA:
         directions_searched = np.empty([0, dim])
         hull = None
 
-        verticies = np.empty(shape=[0, dim])
+        vertices = np.empty(shape=[0, dim])
         directions = np.empty((0, 0))
         sol_fullD = np.empty(shape=[0, dim_fullD])
         stat = np.empty(shape=[0])
@@ -58,7 +59,7 @@ class MAA:
 
         for i in range(max_iter):  # epsilon>MAA_convergence_tol:
 
-            if len(verticies) <= 1:
+            if len(vertices) <= 1:
                 # logger.info('initializing directions')
                 directions = np.concatenate([np.diag(np.ones(dim)),
                                              -np.diag(np.ones(dim))],
@@ -78,23 +79,23 @@ class MAA:
                                                  axis=0)
 
             # Run all searches in parallel using DASK
-            verticies, sol_fullD, stat, cost = solve_direcitons(directions,
+            vertices, sol_fullD, stat, cost = solve_direcitons(directions,
                                                                 self.case,
                                                                 client,
-                                                                verticies,
+                                                                vertices,
                                                                 sol_fullD,
                                                                 stat,
                                                                 cost)
 
             # logger.info('creating convex hull')
             try:
-                hull = ConvexHull(verticies)
+                hull = ConvexHull(vertices)
                 # ,qhull_options='Qs C-1e-32')#,qhull_options='A-0.99')
             except Exception as e:
                 print('did not manage to create hull first try')
                 print(e)
                 try:
-                    hull = ConvexHull(verticies,
+                    hull = ConvexHull(vertices,
                                       qhull_options='Qx Q12 C-1e-32')
                 except Exception as e:
                     print('did not manage to create hull second try')
@@ -105,14 +106,14 @@ class MAA:
             epsilon = delta_v/hull.volume
 
             print(f"""Iteration #{i},
-                    total verticies {len(verticies)},
+                    total vertices {len(vertices)},
                     eps: {epsilon:.2f}""")
                     
             # Save temporary results 
             if save_tmp_results:
                 tmp_results = {}
-                tmp_results['project_name']   = self.project_name
-                tmp_results['vertices']       = verticies
+                tmp_results['project_name']   = self.case.project_name
+                tmp_results['vertces']       = vertices
                 tmp_results['directions']     = directions
                 tmp_results['epsilon']        = epsilon
                 tmp_results['Method']         = 'MAA'
@@ -122,10 +123,14 @@ class MAA:
                     os.makedirs('tmp_results')
                 
                 # Export tmp results as pickle
-                with open(f'tmp_results/tmp_results_{self.project_name}.pkl', 'wb') as file:
+                with open(f'tmp_results/tmp_results_{self.case.project_name}.pkl', 'wb') as file:
                     pickle.dump(tmp_results, file)
                     
         end_time = time.time()
         print(f'\n PyMGA: Finished searching using MAA method \n Time used: {round(end_time - start_time,2)} s \n')
 
-        return verticies, directions_searched, stat, cost
+        # Convert to dataframes
+        vertices   = pd.DataFrame(vertices, columns = self.case.variables)
+        directions_searched = pd.DataFrame(directions_searched, columns = self.case.variables)
+
+        return vertices, directions_searched, stat, cost

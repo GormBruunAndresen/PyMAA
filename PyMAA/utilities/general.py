@@ -1,8 +1,8 @@
 import chaospy
 import numpy as np
+import pandas as pd
 import gurobipy as gp
 from gurobipy import GRB
-
 
 class DirectionSampler():
     """Class for drawing random directions on the unit hypersphere. 
@@ -34,7 +34,7 @@ class DirectionSampler():
 def solve_direcitons(directions,
                      case,
                      client,
-                     verticies,
+                     vertices,
                      sol_fullD,
                      stat,
                      cost):
@@ -42,7 +42,7 @@ def solve_direcitons(directions,
     directions: Directions to search in 
     case: test case object
     client: DASK client
-    verticies: Known verticies
+    vertices: Known vertices
     """
     dim = directions.shape[1]
     variables = list(case.variables.keys())[:dim]
@@ -52,7 +52,7 @@ def solve_direcitons(directions,
     res = client.gather(n_solved)
     for res_i in res:
         if res_i[2] == 'ok':
-            verticies = np.append(verticies, np.array([res_i[0]]), axis=0)
+            vertices = np.append(vertices, np.array([res_i[0]]), axis=0)
             
             sol_fullD = np.append(sol_fullD, 
                                   np.array([list(res_i[1].values())]), 
@@ -62,18 +62,18 @@ def solve_direcitons(directions,
         else:
             print('Direction not solved with sucess')
     
-    return verticies, sol_fullD, stat, cost
+    return vertices, sol_fullD, stat, cost
 
 
-def check_large_volume(directions, verticies, sample, tol=0):
-    """ Given a set of directions and verticies, compute
+def check_large_volume(directions, vertices, sample, tol=0):
+    """ Given a set of directions and vertices, compute
     wheater a point (sample) is inside
     all the hyperplanes defined by
-    normals (directions) and points (verticies)
+    normals (directions) and points (vertices)
     """
     dist = []
-    for i in range(len(verticies)):
-        dist.append(directions[i]@(sample-verticies[i]))
+    for i in range(len(vertices)):
+        dist.append(directions[i]@(sample-vertices[i]))
 
     distances = np.array(dist)
     passing = np.all(distances >= -tol)
@@ -86,14 +86,14 @@ def check_large_volume(directions, verticies, sample, tol=0):
     return passing
 
 
-def calc_x0(directions, verticies):
-    n = verticies.shape[0]
+def calc_x0(directions, vertices):
+    n = vertices.shape[0]
     s = np.random.rand(n-1)
     s.sort()
     s = np.insert(s, [0, n-1], [0, 1])
     s = np.diff(s)
 
-    x0 = np.sum(verticies.T*s, axis=1)
+    x0 = np.sum(vertices.T*s, axis=1)
     return x0
 
 
@@ -122,6 +122,10 @@ def check_small_volume(points_nD, p):
 def calculate_cheb(vertices, directions):
     import polytope as pt
     
+    variables = vertices.columns
+    vertices = vertices.values
+    directions = directions.values
+    
     if vertices.shape[1] <=7:
         #If the dimensions are below 7, use convexhull to get more accurate 
         # calculation of the Chebyshev center
@@ -140,7 +144,7 @@ def calculate_cheb(vertices, directions):
         # Define polytope
         poly = pt.Polytope(A,b)
     
-    cheb_center = poly.chebXc
+    cheb_center = pd.DataFrame([poly.chebXc], columns = variables)
     cheb_radius = poly.chebR
     
     return cheb_center, cheb_radius

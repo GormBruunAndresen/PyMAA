@@ -1,23 +1,28 @@
 import numpy as np
+import pandas as pd
 from ..utilities.general import check_large_volume, calc_x0, DirectionSampler
 
 
-def har_sample(n_samples, x0, directions, verticies):
+def har_sample(n_samples, x0, directions, vertices):
     """ Hit-and-Run sampler
     Sample n_samples starting from x0
     n_samples: number of samples to draw
     x0: starting point
     directions: Directions that have
     been searched in with the MAA algorithm phase 1
-    verticies: The verticies found by searching in
+    vertices: The vertices found by searching in
     directions with the MAA algorithm
     """
     
+    # Take values without dataframes
+    variables = vertices.columns
+    vertices = vertices.values
+    directions = directions.values
     
     for i in range(10):
-        if not check_large_volume(directions, verticies, x0, tol=1000):
+        if not check_large_volume(directions, vertices, x0, tol=1000):
             print(f'x0 not in large volume. Trying again. i:{i}')
-            x0 = calc_x0(directions, verticies)
+            x0 = calc_x0(directions, vertices)
         else:
             break
         
@@ -25,7 +30,7 @@ def har_sample(n_samples, x0, directions, verticies):
     # normalvectors and offsets.
     # Offset is the distance from origo to the
     # plane in the normal direction.
-    offsets = [directions[i]@(-verticies[i]) for i in range(len(directions))]
+    offsets = [directions[i]@(-vertices[i]) for i in range(len(directions))]
     A = -directions  # Matrix containing all normal vectors
     b = offsets  # vector of offsets
 
@@ -47,6 +52,8 @@ def har_sample(n_samples, x0, directions, verticies):
         
         samples[j, :] = x_new
         x_i = x_new    
+        
+    samples   = pd.DataFrame(samples, columns = variables)
 
     return samples
 
@@ -61,6 +68,10 @@ def bayesian_sample(n_samples, vertices):
     from numpy.linalg import det
     from scipy.spatial import Delaunay
     from scipy.spatial import ConvexHull
+    
+    # Extract vertices values from dataframe
+    variables = vertices.columns
+    vertices = vertices.values
     
     dims = vertices.shape[-1]                     # Determine dimension of simplexes
     hull = vertices[ConvexHull(vertices).vertices]  # Find MGA points
@@ -98,5 +109,7 @@ def bayesian_sample(n_samples, vertices):
                            
                 samples[counter] = sample_x
                 counter = counter + 1
+        
+    samples   = pd.DataFrame(samples, columns = variables)
         
     return samples
