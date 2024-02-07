@@ -4,14 +4,23 @@ from ..utilities.general import check_large_volume, calc_x0, DirectionSampler
 
 
 def har_sample(n_samples, x0, directions, vertices):
-    """ Hit-and-Run sampler
-    Sample n_samples starting from x0
-    n_samples: number of samples to draw
-    x0: starting point
-    directions: Directions that have
-    been searched in with the MAA algorithm phase 1
-    vertices: The vertices found by searching in
-    directions with the MAA algorithm
+    """ 
+    Hit-and-Run sampler for generating samples within a polytope.
+    Generates samples from within a polytope, which is defined as hyperplanes 
+    by its vertices and directions. Vertices and directions are obtained from
+    the MAA algorithm. The starting point (x0) must be within the polytope.
+
+    Parameters:
+    - n_samples (int): Number of samples to draw.
+    - x0 (numpy.ndarray): Starting point for the sampler.
+    - directions (pd.DataFrame): Directions that have been searched with the 
+                                 MAA algorithm.
+    - vertices (pd.DataFrame): Vertices found by searching in directions 
+                               with the MAA algorithm.
+
+    Returns:
+    - samples (pd.DataFrame): DataFrame containing generated samples.
+    
     """
     
     # Take values without dataframes
@@ -59,9 +68,21 @@ def har_sample(n_samples, x0, directions, vertices):
 
 def bayesian_sample(n_samples, vertices):
     '''
-    Bayesian Bootstrap sampler. Uses convexhull, so it is mainly useful for 
-    spaces of less than 10 dimensions.
-    Partially from https://stackoverflow.com/questions/59073952/how-to-get-uniformly-distributed-points-in-convex-hull
+    Bayesian Bootstrap sampler for generating samples within a polytope.
+    Generates samples within a polytope by computing the convex hull from the 
+    vertices of the polytope. Uses Delaunay triangulation to split the convex
+    hull into simplexes, and samples each simplex uniformly. Number of samples
+    per simplex is determined based on the volume of each simplex.
+    Partially adapted from https://stackoverflow.com/questions/59073952/how-to-get-uniformly-distributed-points-in-convex-hull
+
+    Parameters:
+    - n_samples (int): Number of samples to draw.
+    - vertices (pd.DataFrame): DataFrame containing vertices of the polytope
+
+    Returns:
+    - samples (pd.DataFrame): DataFrame containing generated samples.
+
+    Note: This method is mainly useful for spaces with fewer than 8 dimensions.
     '''
     import random
     import numpy as np
@@ -73,11 +94,12 @@ def bayesian_sample(n_samples, vertices):
     variables = vertices.columns
     vertices = vertices.values
     
-    dims = vertices.shape[-1]                     # Determine dimension of simplexes
-    hull = vertices[ConvexHull(vertices).vertices]  # Find MGA points
-    deln = hull[Delaunay(hull).simplices]       # Split MGA-hull into simplexes
+    dims = vertices.shape[-1]                      # Determine dimension of simplexes
+    hull = vertices[ConvexHull(vertices).vertices] # Vertices
+    deln = hull[Delaunay(hull).simplices]          # Split hull into simplexes
 
-    vols = np.abs(det(deln[:, :dims, :] - deln[:, dims:, :])) / np.math.factorial(dims) # Calculate volume of simplexes   
+    # Calculate volume of simplexes   
+    vols = np.abs(det(deln[:, :dims, :] - deln[:, dims:, :])) / np.math.factorial(dims) 
     
     #### Find number of samples pr. simplex from their volume
     samples_pr_simplex = [None] * vols.shape[-1]
@@ -90,7 +112,7 @@ def bayesian_sample(n_samples, vertices):
     for l in range(vols.shape[-1]):
             for ll in range(samples_pr_simplex[l]):
                
-                #### Find random vector which == 1
+                #### Find random vector which sums to 1
                 a_list = [0,1]
                 for i in range(dims): 
                     a_list.insert(i+1, random.uniform(0, 1))
@@ -110,6 +132,7 @@ def bayesian_sample(n_samples, vertices):
                 samples[counter] = sample_x
                 counter = counter + 1
         
+    # Put samples in dataframe for clarity
     samples   = pd.DataFrame(samples, columns = variables)
         
     return samples
