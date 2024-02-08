@@ -17,6 +17,8 @@ Here follows a quick overview of each method. For details, see the pages for eac
 
 The MAA method relies on the computation of the convex hull of the polytope, defined by the vertices. The search directions are set as the face-normal directions, and the analysis stops when the volume of the convex hull stops changing significantly.
 
+First introduced in the paper [Modeling all alternative solutions for highly renewable energy systems](https://doi.org/10.1016/j.energy.2021.121294).
+
 **Pros**
 
 - The convex hull of the polytope is well-defined by the quickhull algorithm
@@ -29,7 +31,9 @@ The MAA method relies on the computation of the convex hull of the polytope, def
 
 ## bMAA Method
 
-The bMAA method relies on hyperplanes to define the polytope, and chooses search-directions based on which areas are likely to discover the most new space. The bMAA method stops at user-defined points, such as number of vertices found.
+The bMAA method relies on hyperplanes to define the polytope, and chooses search-directions based on which directions are likely to discover the most new space. The bMAA method stops at user-defined points, such as number of vertices found.
+
+First introduced in the paper Bounding the near-optimal solution space (Not yet published)
 
 **Pros**
 
@@ -37,4 +41,4 @@ The bMAA method relies on hyperplanes to define the polytope, and chooses search
 
 **Cons**
 
-- Result is not a conservative
+- Result is not as conservative as the convex hull

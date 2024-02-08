@@ -2,6 +2,9 @@
 layout: default
 title: MGA method
 parent: Search Methods
+nav_exclude: True
 ---
 
-MGA documentation
+
+
+# MGA Method
