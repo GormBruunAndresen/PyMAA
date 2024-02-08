@@ -6,6 +6,8 @@ parent: Search Methods
 
 ## MAA Method
 
+{:toc}
+
 This method was first introduced in the paper [Modeling all alternative solutions for highly renewable energy systems](https://doi.org/10.1016/j.energy.2021.121294).
 
 The MAA method relies on the computation of the Convex Hull of the vertices. From the initial vertices, the Convex Hull is computed using the QuickHull algorithm. The resulting hull has faces, and the face-normal directions are chosen as the next search direction.
@@ -27,3 +29,7 @@ This continues iteratively, until a stopping criteria is met. For the MAA method
 The MAA method is illustrated here:
 
 ![](maa_method_illustration.png)
+
+# MAA method code
+
+## PyMAA.methods.MAA()
