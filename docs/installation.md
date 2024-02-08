@@ -6,7 +6,7 @@ nav_order: 1
 
 # Installation
 
-###### Install with pip
+### Install with pip
 
 To install from Pypi, execute the following command:
 
