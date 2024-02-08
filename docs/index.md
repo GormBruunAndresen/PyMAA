@@ -8,11 +8,11 @@ nav_order: 1
 
 ### A python package for performing Modeling All Alternatives (MAA) analysis.
 
----
-
 This site provides documentation for the PyMAA package, as well as explanations and examples for the different MAA methods available in PyMAA.
 
----
+The package is also available on [GitHub](https://github.com/LukasBNordentoft/PyMAA) and directly on [PyPI](https://pypi.org/project/PyMAA/).
+
+
 
 Modeling All Alternatives is an analysis method for optimization problems, aimed at defining the near-optimal feasible space of a convex optimization problem. It is a branch of Modeling to Generate Alternatives (MGA). 
 
