@@ -6,7 +6,15 @@ parent: Search Methods
 
 ## MAA Method
 
+```markdown
+<details open markdown="block">
+  <summary>
+    Table of contents
+  </summary>
+  {: .text-delta }
+1. TOC
 {:toc}
+</details>
 
 This method was first introduced in the paper [Modeling all alternative solutions for highly renewable energy systems](https://doi.org/10.1016/j.energy.2021.121294).
 
