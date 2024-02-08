@@ -5,10 +5,16 @@ parent: Search Methods
 ---
 
 # MAA Method
-### Table of contents
-- [MAA method code](#maa-method-code)
-  - [PyMAA.methods.MAA()](#pymaamethodsmaa)
 
+### Table of contents
+
+- [MAA method description](#maa-method-description)
+
+- [*class* PyMAA.methods.MAA(case)](#class-pymaamethodsmaacase)
+  - [find_optimum()](#methodfind_optimum)
+  - [search_directions(n_samples, n_workers = 4, max_iter = 20, save_tmp_results = True )](#methodsearch_directionsn_samples-n_workers--4-max_iter--20-save_tmp_results--true-)
+
+## MAA method description
 
 This method was first introduced in the paper [Modeling all alternative solutions for highly renewable energy systems](https://doi.org/10.1016/j.energy.2021.121294).
 
@@ -32,8 +38,50 @@ The MAA method is illustrated here:
 
 ![](maa_method_illustration.png)
 
-# MAA method code
+## *class* PyMAA.methods.MAA(case)
 
-## PyMAA.methods.MAA()
+Create a method object using the MAA method, for a given case object
 
-### PyMAA.methods
+Example: `method = PyMAA.methods.MAA(case)`
+
+### find_optimum()
+
+Find the optimum solution to the given case object. This is the same regardless of method chosen (MAA/bMAA)
+
+**Returns**
+
+- opt_sol - List containing the optimal values for each variable defined in the case
+
+- obj - objective function value
+
+- n_solved - solved PyPSA network
+
+Example: `opt_sol, obj, n_solved = method.find_optimum()`
+
+### search_directions(n_samples, n_workers = 4, max_iter = 20, save_tmp_results = True )
+
+Performs the MAA analysis using the given method for the given case object. 
+
+Starts Dask workers to handle searching multiple directions using multiple CPU threads.
+
+**Parameters**
+
+- n_samples - Maximum number of vertices to find before stopping.
+
+- n_workers - Number of CPU threads to use for searching directions in parallel.
+
+- max_iter - Maximum number of iterations before stopping
+
+- save_tmp_results - Whether to save results after each iteration. Saves newest results in tmp_results folder created in the working directory. Useful in case MAA analysis breaks down before completion.
+
+**Returns**
+
+- vertices - The vertices of the polytope found duting the MAA analysis
+
+- directions - The directions associated with the found vertices
+
+- stat - ???
+
+- cost - ???
+
+Example: `vertices, directions, _, _ = method.search_directions(n_samples = 500, n_workers = 16)`
