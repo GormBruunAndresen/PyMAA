@@ -14,7 +14,7 @@ parent: Search Methods
   - [find_optimum()](#methodfind_optimum)
   - [search_directions(n_samples, n_workers = 4, max_iter = 20, save_tmp_results = True )](#methodsearch_directionsn_samples-n_workers--4-max_iter--20-save_tmp_results--true-)
 
-## MAA method description
+# MAA method description
 
 This method was first introduced in the paper [Modeling all alternative solutions for highly renewable energy systems](https://doi.org/10.1016/j.energy.2021.121294).
 
@@ -38,13 +38,13 @@ The MAA method is illustrated here:
 
 ![](maa_method_illustration.png)
 
-## *class* PyMAA.methods.MAA(case)
+# *class* PyMAA.methods.MAA(case)
 
 Create a method object using the MAA method, for a given case object
 
 Example: `method = PyMAA.methods.MAA(case)`
 
-### find_optimum()
+## find_optimum()
 
 Find the optimum solution to the given case object. This is the same regardless of method chosen (MAA/bMAA)
 
@@ -58,7 +58,7 @@ Find the optimum solution to the given case object. This is the same regardless 
 
 Example: `opt_sol, obj, n_solved = method.find_optimum()`
 
-### search_directions(n_samples, n_workers = 4, max_iter = 20, save_tmp_results = True )
+## search_directions(n_samples, n_workers = 4, max_iter = 20, save_tmp_results = True )
 
 Performs the MAA analysis using the given method for the given case object. 
 
