@@ -1,5 +1,5 @@
 ---
-title: Sampling
+title: 3 Sampling
 layout: default
 nav_order: 3
 ---
@@ -11,7 +11,5 @@ Sampling the polytope evenly is often relevant. PyMAA has two methods of even sa
 Here follows a quick overview. See the sampling method pages for detailed descriptions.
 
 ## Bayesian Bootstrap sampling
-
-
 
 ## Hit-and-Run sampling

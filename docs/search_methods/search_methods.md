@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Search Methods
+title: 2 Search Methods
 nav_order: 2
 has_children: true
 ---
