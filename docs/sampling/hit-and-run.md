@@ -19,9 +19,11 @@ Hit-and-Run...
 
 **Pros**
 
-- **Cons**
+- pro
 
-- 
+**Cons**
+
+- con
 
 Hit-and-Run sampling is illustrated here:
 
@@ -31,8 +33,10 @@ Hit-and-Run sampling is illustrated here:
 
 **Parameters**
 
-- **Returns**
+- parameter
 
-- 
+**Returns**
+
+- return
 
 Example: `example`

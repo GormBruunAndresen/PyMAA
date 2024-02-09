@@ -19,11 +19,11 @@ The Bayesian Bootstrap...
 
 **Pros**
 
-- 
+- pro
 
 **Cons**
 
-- 
+- con
 
 Bayesian Bootstrap sampling is illustrated here:
 
@@ -33,10 +33,10 @@ Bayesian Bootstrap sampling is illustrated here:
 
 **Parameters**
 
-- 
+- parameter
 
 **Returns**
 
-- 
+- return
 
 Example: `example`
