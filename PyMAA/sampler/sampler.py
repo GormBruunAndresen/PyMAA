@@ -82,7 +82,7 @@ def bayesian_sample(n_samples, vertices):
     Returns:
     - samples (pd.DataFrame): DataFrame containing generated samples.
 
-    Note: This method is mainly useful for spaces with fewer than 8 dimensions.
+    Note: This method is mainly useful for spaces with 6 or less dimensions.
     '''
     import random
     import numpy as np
