@@ -111,6 +111,7 @@ class bMAA:
             print(f'Hit and run sampling, {har_samples} samples')
             x0 = calc_x0(directions, vertices)
             samples = har_sample(har_samples, x0, directions, vertices)
+            samples = samples.values
 
             # Find acceptance rate
             acc_small = []
@@ -123,23 +124,6 @@ class bMAA:
                    total vertices {len(directions)},
                    acceptance rate {acc_rate:.3f}""")
 
-            # Save temporary results 
-            if save_tmp_results:
-                tmp_results = {}
-                tmp_results['project_name']   = self.case.project_name
-                tmp_results['vertices']       = vertices
-                tmp_results['directions']     = directions
-                tmp_results['acc_rate']       = acc_rate
-                tmp_results['Method']         = 'bMAA'
-                
-                # Create tmp folder if it does not exist
-                if not os.path.exists('tmp_results'):
-                    os.makedirs('tmp_results')
-                
-                # Export tmp results as pickle
-                with open(f'tmp_results/tmp_results_{self.case.project_name}.pkl', 'wb') as file:
-                    pickle.dump(tmp_results, file)
-
             if acc_rate > tol:
                 break
 
@@ -147,12 +131,30 @@ class bMAA:
                 print('Max function evaluations reached. Stopping')
                 break
             
-        end_time = time.time()
-        print(f'\n PyMGA: Finished searching using bMAA method \n Time used: {round(end_time - start_time,2)} s \n')
-            
         # Convert to dataframes
         vertices   = pd.DataFrame(vertices, columns = self.case.variables)
         directions = pd.DataFrame(directions, columns = self.case.variables)
+            
+        # Save temporary results 
+        if save_tmp_results:
+            tmp_results = {}
+            tmp_results['project_name']   = self.case.project_name
+            tmp_results['vertices']       = vertices
+            tmp_results['directions']     = directions
+            tmp_results['acc_rate']       = acc_rate
+            tmp_results['Method']         = 'bMAA'
+            
+            # Create tmp folder if it does not exist
+            if not os.path.exists('tmp_results'):
+                os.makedirs('tmp_results')
+            
+            # Export tmp results as pickle
+            with open(f'tmp_results/tmp_results_{self.case.project_name}.pkl', 'wb') as file:
+                pickle.dump(tmp_results, file)
+            
+        end_time = time.time()
+        print(f'\n PyMGA: Finished searching using bMAA method \n Time used: {round(end_time - start_time,2)} s \n')
+        
         
         return vertices, directions, stat, cost
 

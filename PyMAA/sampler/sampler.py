@@ -23,10 +23,10 @@ def har_sample(n_samples, x0, directions, vertices):
     
     """
     
-    # Take values without dataframes
-    variables = vertices.columns
-    vertices = vertices.values
-    directions = directions.values
+    # # Take values without dataframes
+    # variables = vertices.columns
+    # vertices = vertices.values
+    # directions = directions.values
     
     for i in range(10):
         if not check_large_volume(directions, vertices, x0, tol=1000):
@@ -62,7 +62,7 @@ def har_sample(n_samples, x0, directions, vertices):
         samples[j, :] = x_new
         x_i = x_new    
         
-    samples   = pd.DataFrame(samples, columns = variables)
+    samples   = pd.DataFrame(samples)
 
     return samples
 
