@@ -49,8 +49,6 @@ Find the optimum solution to the given case object. This is the same regardless 
 
 **Returns**
 
-
-
 - opt_sol - List containing the optimal values for each variable defined in the case
 
 - obj - objective function value
@@ -59,11 +57,11 @@ Find the optimum solution to the given case object. This is the same regardless 
 
 Example: `opt_sol, obj, n_solved = method.find_optimum()`
 
-## search_directions(n_samples, n_workers = 4, max_iter = 20, save_tmp_results = True )
+## MAA.search_directions(n_samples, n_workers = 4, max_iter = 20, save_tmp_results = True )
 
 Performs the MAA analysis using the given method for the given case object. 
 
-Starts Dask workers to handle searching multiple directions using multiple CPU threads.
+
 
 **Parameters**
 

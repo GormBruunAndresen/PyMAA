@@ -20,7 +20,7 @@ To be used in an MAA analysis, any case must include at least the following meth
 
 PyMAA has a built-in class for creating case objects from PyPSA networks.
 
-# *class* PyMAA.cases.pypsa\_to\_case(project_name, config, base_network_path, extra_func = None, variables = None, tmp_network_path = 'tmp/networks/tmp.h5', n_snapshots = 8760, mga_slack = 0.1)
+### *class* PyMAA.cases.pypsa\_to\_case(project_name, config, base_network_path, extra_func = None, variables = None, tmp_network_path = 'tmp/networks/tmp.h5', n_snapshots = 8760, mga_slack = 0.1)
 
 A class which creates case objects from pypsa networks.
 
