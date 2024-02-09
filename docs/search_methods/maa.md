@@ -41,6 +41,12 @@ The MAA method is illustrated here:
 
 Create a method object using the MAA method, for a given case object
 
+**Parameters**
+
+| Name | Type        | Description                                                                                |
+| ---- | ----------- | ------------------------------------------------------------------------------------------ |
+| case | case object | PyMAA case object containing the optimization problem and required methods. See case page. |
+
 Example: `method = PyMAA.methods.MAA(case)`
 
 ## find_optimum()
@@ -49,13 +55,12 @@ Find the optimum solution to the given case object. This is the same regardless 
 
 **Returns**
 
-- opt_sol - List containing the optimal values for each variable defined in the case
+| Name    | Type  | Description                                                            |
+| ------- | ----- | ---------------------------------------------------------------------- |
+| opt_sol | List  | List of the optimal values for chosen variables set in the case object |
+| obj     | float | objective function value at the optimum solution                       |
 
-- obj - objective function value
-
-- n_solved - solved PyPSA network
-
-Example: `opt_sol, obj, n_solved = method.find_optimum()`
+Example: `opt_sol, obj = method.find_optimum()`
 
 ## MAA.search_directions()
 
@@ -63,22 +68,20 @@ Performs the MAA analysis using the given method for the given case object.
 
 **Parameters**
 
-- n_samples - Maximum number of vertices to find before stopping.
-
-- n_workers - Number of CPU threads to use for searching directions in parallel.
-
-- max_iter - Maximum number of iterations before stopping
-
-- save_tmp_results - Whether to save results after each iteration. Saves newest results in tmp_results folder created in the working directory. Useful in case MAA analysis breaks down before completion.
+| Name             | Type | Description                                                                                                                                                                          |
+| ---------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| n_samples        | int  | Maximum number of vertices to find before stopping                                                                                                                                   |
+| n_workers        | int  | Number of CPU threads to use for searching directions in parallel                                                                                                                    |
+| max_iter         | int  | Maximum number of iterations before stopping                                                                                                                                         |
+| save_tmp_results | bool | Whether to save results after each iteration. Saves newest results in tmp_results folder created in the working directory. Useful in case MAA analysis breaks down before completion |
 
 **Returns**
 
-- vertices - The vertices of the polytope found duting the MAA analysis
-
-- directions - The directions associated with the found vertices
-
-- stat - ???
-
-- cost - ???
+| Name       | Type         | Description                                                |
+| ---------- | ------------ | ---------------------------------------------------------- |
+| vertices   | pd.DataFrame | The vertices of the polytope found during the MAA analysis |
+| directions | pd.DataFrame | The directions associated with the found vertices          |
+| stat       |              |                                                            |
+| cost       |              |                                                            |
 
 Example: `vertices, directions, _, _ = method.search_directions(n_samples = 500, n_workers = 16)`

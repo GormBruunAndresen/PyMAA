@@ -36,6 +36,12 @@ The bMAA method bounds are illustrated here:
 
 Create a method object using the bMAA method, for a given case object
 
+**Parameters**
+
+| Name | Type        | Description                                                                                |
+| ---- | ----------- | ------------------------------------------------------------------------------------------ |
+| case | case object | PyMAA case object containing the optimization problem and required methods. See case page. |
+
 Example: `method = PyMAA.methods.bMAA(case)`
 
 ## find_optimum()
@@ -44,13 +50,12 @@ Find the optimum solution to the given case object. This is the same regardless 
 
 **Returns**
 
-- opt_sol - List containing the optimal values for each variable defined in the case
+| Name    | Type  | Description                                                            |
+| ------- | ----- | ---------------------------------------------------------------------- |
+| opt_sol | List  | List of the optimal values for chosen variables set in the case object |
+| obj     | float | objective function value at the optimum solution                       |
 
-- obj - objective function value
-
-- n_solved - solved PyPSA network
-
-Example: `opt_sol, obj, n_solved = method.find_optimum()`
+Example: `opt_sol, obj = method.find_optimum()`
 
 ## bMAA.search_directions()
 
@@ -58,17 +63,14 @@ Performs the MAA analysis using the given method for the given case object.
 
 **Parameters**
 
-- n_samples - Maximum number of vertices to find before stopping.
-
-- har_samples - Number of samples to draw each iteration, to determine next directions
-
-- n_workers - Number of CPU threads to use for searching directions in parallel.
-
-- max_iter - Maximum number of iterations before stopping
-
-- tol - Stopping tolerance for ratio between upper and lower bound
-
-- save_tmp_results - Whether to save results after each iteration. Saves newest results in tmp_results folder created in the working directory. Useful in case MAA analysis breaks down before completion.
+| Name             | Type  | Description                                                                                                                                                                          |
+| ---------------- | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| n_samples        | int   | Maximum number of vertices to find before stopping                                                                                                                                   |
+| har_samples      | int   | Number of samples to draw each iteration for calculation of upper/lower bound ratios and to determine next directions                                                                |
+| n_workers        | int   | Number of CPU threads to use for searching directions in parallel                                                                                                                    |
+| max_iter         | int   | Maximum number of iterations before stopping                                                                                                                                         |
+| tol              | float | Stopping tolerance for ratio between upper and lower bound                                                                                                                           |
+| save_tmp_results | bool  | Whether to save results after each iteration. Saves newest results in tmp_results folder created in the working directory. Useful in case MAA analysis breaks down before completion |
 
 **Returns**
 
