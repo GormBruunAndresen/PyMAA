@@ -1,7 +1,7 @@
 ---
 title: 1 Case setup
 layout: default
-nav_order: 2
+nav_order: 5
 ---
 
 # Case setup
