@@ -24,7 +24,7 @@ As the near-optimal space is an *n*-dimensional polytope, plotting the results i
 
 Plots a matrix plot of polytope projections onto all variable combinations. Save plot by giving it a filename.
 
-> Example from the example file example_3-bus_network_MAA.py: 
+> Example from the example file `example_3-bus_network_MAA.py`: 
 > 
 > ```python
 >  from PyMAA.utilities.plot import near_optimal_space_matrix
