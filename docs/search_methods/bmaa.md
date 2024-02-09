@@ -32,7 +32,7 @@ The bMAA method (Bounded Modlling All Alterntaives) uses hyperplanes to define t
 The bMAA method bounds are illustrated here:
 ![](bmaa_method_illustration.png)
 
-# *class* PyMAA.methods.MAA(case)
+## *class* PyMAA.methods.MAA(case)
 
 Create a method object using the bMAA method, for a given case object
 

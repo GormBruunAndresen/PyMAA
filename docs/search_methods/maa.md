@@ -37,7 +37,7 @@ The MAA method is illustrated here:
 
 ![](maa_method_illustration.png)
 
-# *class* PyMAA.methods.MAA(case)
+## *class* PyMAA.methods.MAA(case)
 
 Create a method object using the MAA method, for a given case object
 
