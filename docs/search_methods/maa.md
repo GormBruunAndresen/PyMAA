@@ -13,14 +13,9 @@ parent: Search Methods
   - [find_optimum()](#find_optimum)
   - [search_directions(n_samples, n_workers = 4, max_iter = 20, save_tmp_results = True )](#search_directionsn_samples-n_workers--4-max_iter--20-save_tmp_results--true-)
 
-### TOC 2
-
-1. TOC
-   {:toc}
-
 # MAA method description
 
-This method was first introduced in the paper [Modeling all alternative solutions for highly renewable energy systems](https://doi.org/10.1016/j.energy.2021.121294).
+> The MAA method was first introduced in the paper [Modeling all alternative solutions for highly renewable energy systems](https://doi.org/10.1016/j.energy.2021.121294).
 
 The MAA method relies on the computation of the Convex Hull of the vertices. From the initial vertices, the Convex Hull is computed using the QuickHull algorithm. The resulting hull has faces, and the face-normal directions are chosen as the next search direction.
 
@@ -53,6 +48,10 @@ Example: `method = PyMAA.methods.MAA(case)`
 Find the optimum solution to the given case object. This is the same regardless of method chosen (MAA/bMAA)
 
 **Returns**
+
+Opt
+: descrip
+
 
 - opt_sol - List containing the optimal values for each variable defined in the case
 
