@@ -32,6 +32,7 @@ If you encounter erros when importing PyMAA, use PyMAA from the PyMAA anaconda e
 conda env create -f pymaa_environment.yml
 ```
 
+<!---
 ## PyMAA.methods
 
 #### PyMAA.methods.MGA(case)
@@ -102,3 +103,4 @@ A synthetic tescase of testing MGA/MAA methods. The method creates an optimizati
 A synthetic tescase of testing MGA/MAA methods. The method creates an optimization problem with a solution space in the form of the intersection of a hyperube and a cross-polytope. <br>
 
 *dim:* Number of dimensions of the test case <br>
+-->
