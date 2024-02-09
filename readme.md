@@ -6,7 +6,7 @@ This was originally a fork of [PyMGA](https://github.com/TimToernes/PyMGA), but 
 
 ## Documentation
 
-See [lukasbnordentoft.github.io/PyMAA/](https://lukasbnordentoft.github.io/PyMAA/) for documentation.
+See [the documentation page](https://lukasbnordentoft.github.io/PyMAA/)
 
 ## Installation
 
