@@ -41,17 +41,19 @@ The MAA method is illustrated here:
 
 Create a method object using the MAA method, for a given case object
 
+> Example: `method = PyMAA.methods.MAA(case)`
+
 **Parameters**
 
 | Name | Type        | Description                                                                                |
 | ---- | ----------- | ------------------------------------------------------------------------------------------ |
 | case | case object | PyMAA case object containing the optimization problem and required methods. See case page. |
 
-Example: `method = PyMAA.methods.MAA(case)`
-
 ## find_optimum()
 
 Find the optimum solution to the given case object. This is the same regardless of method chosen (MAA/bMAA)
+
+> Example: `opt_sol, obj = method.find_optimum()`
 
 **Returns**
 
@@ -60,11 +62,11 @@ Find the optimum solution to the given case object. This is the same regardless 
 | opt_sol | List  | List of the optimal values for chosen variables set in the case object |
 | obj     | float | objective function value at the optimum solution                       |
 
-Example: `opt_sol, obj = method.find_optimum()`
-
 ## MAA.search_directions()
 
 Performs the MAA analysis using the given method for the given case object. 
+
+> Example: `vertices, directions, _, _ = method.search_directions(n_samples = 500, n_workers = 16)`
 
 **Parameters**
 
@@ -83,5 +85,3 @@ Performs the MAA analysis using the given method for the given case object.
 | directions | pd.DataFrame | The directions associated with the found vertices          |
 | stat       |              |                                                            |
 | cost       |              |                                                            |
-
-Example: `vertices, directions, _, _ = method.search_directions(n_samples = 500, n_workers = 16)`
