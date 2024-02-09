@@ -11,7 +11,7 @@ parent: 2 Search Methods
 - [bMAA method description](#bmaa-method-description)
 - [*class* PyMAA.methods.MAA(case)](#class-pymaamethodsmaacase)
   - [find_optimum()](#find_optimum)
-  - [bMAA.search_directions()](#bmaasearch_directionsn_samples-har_samples-n_workers--4-max_iter--30-tol--099-save_tmp_results--true-)
+  - [bMAA.search_directions()](#bmaasearch_directions)
 
 # bMAA method description
 

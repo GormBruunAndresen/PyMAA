@@ -11,7 +11,7 @@ parent: 2 Search Methods
 - [MAA method description](#maa-method-description)
 - [*class* PyMAA.methods.MAA(case)](#class-pymaamethodsmaacase)
   - [find_optimum()](#find_optimum)
-  - [MAA.search_directions()](#maasearch_directionsn_samples-n_workers--4-max_iter--20-save_tmp_results--true-)
+  - [MAA.search_directions()](#maasearch_directions)
 
 # MAA method description
 
