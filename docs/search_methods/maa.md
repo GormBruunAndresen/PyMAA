@@ -9,10 +9,14 @@ parent: Search Methods
 ### Table of contents
 
 - [MAA method description](#maa-method-description)
-
 - [*class* PyMAA.methods.MAA(case)](#class-pymaamethodsmaacase)
-  - [find_optimum()](#methodfind_optimum)
-  - [search_directions(n_samples, n_workers = 4, max_iter = 20, save_tmp_results = True )](#methodsearch_directionsn_samples-n_workers--4-max_iter--20-save_tmp_results--true-)
+  - [find_optimum()](#find_optimum)
+  - [search_directions(n_samples, n_workers = 4, max_iter = 20, save_tmp_results = True )](#search_directionsn_samples-n_workers--4-max_iter--20-save_tmp_results--true-)
+
+### TOC 2
+
+1. TOC
+   {:toc}
 
 # MAA method description
 
