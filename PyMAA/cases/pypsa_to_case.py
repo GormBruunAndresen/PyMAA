@@ -121,7 +121,7 @@ class PyPSA_to_case:
         all_variable_values = self.get_var_values(n)
         n_solved = n
 
-        return n.objective, all_variable_values, n_solved
+        return n.objective, all_variable_values
 
     def search_direction(self, direction, variables=None):
         if variables is None:

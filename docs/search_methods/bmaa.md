@@ -61,7 +61,7 @@ Find the optimum solution to the given case object. This is the same regardless 
 
 Performs the MAA analysis using the given method for the given case object.
 
-> Example: `vertices, directions, _, _ = method.search_directions(n_samples = 500, n_workers = 16)`
+> Example: `vertices, directions, stat, cost = method.search_directions(n_samples = 500, n_workers = 16)`
 
 **Parameters**
 
@@ -76,9 +76,9 @@ Performs the MAA analysis using the given method for the given case object.
 
 **Returns**
 
-| Name       | Type         | Description                                                |
-| ---------- | ------------ | ---------------------------------------------------------- |
-| vertices   | pd.DataFrame | The vertices of the polytope found during the MAA analysis |
-| directions | pd.DataFrame | The directions associated with the found vertices          |
-| stat       |              |                                                            |
-| cost       |              |                                                            |
+| Name       | Type         | Description                                                               |
+| ---------- | ------------ | ------------------------------------------------------------------------- |
+| vertices   | pd.DataFrame | The vertices of the polytope found during the MAA analysis                |
+| directions | pd.DataFrame | The directions associated with the found vertices                         |
+| stat       | np.array     | Array with the status of the optimization run for each direction searched |
+| cost       | np.array     | Array with the objective function value for each direction searched       |

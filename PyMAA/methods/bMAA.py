@@ -25,13 +25,13 @@ class bMAA:
         # Finding optimal solution
         start_time = time.time()
         print('\n PyMGA: Finding optimal system \n')
-        self.obj, opt_sol, n_solved = self.case.solve()
+        self.obj, opt_sol = self.case.solve()
         self.opt_sol = pd.DataFrame([list(opt_sol.values())[:self.dim]], 
                                     columns = self.case.variables)
         end_time = time.time()
         print(f'\n PyMGA: Optimal system found \n obj. value: {round(self.obj,2)} \n Time used: {round(end_time - start_time,2)}\n')
 
-        return self.opt_sol, self.obj, n_solved
+        return self.opt_sol, self.obj
     
     def search_directions(self,
                           n_samples,
