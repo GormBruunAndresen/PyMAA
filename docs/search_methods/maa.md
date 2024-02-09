@@ -49,8 +49,6 @@ Find the optimum solution to the given case object. This is the same regardless 
 
 **Returns**
 
-Opt
-: descrip
 
 
 - opt_sol - List containing the optimal values for each variable defined in the case
