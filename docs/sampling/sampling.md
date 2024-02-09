@@ -17,11 +17,11 @@ Bayesian Bootstrap sampling works by calculating the convex hull representation 
 
 The number of samples to draw from a simplex is determined by the share of the total volume for the simplex. To draw a sample, the vectors pointing to the simplex vertices are scaled with a coefficient and combined. The scaling coefficients always sum to 1, which guarantees that the sample is within the simplex.
 
-> **Note**
+> **Note:**
 > Bayesian Bootstrap is not suited for high-dimension polytopes (6+ dimensions) because the convex hull must be calculated, and QuickHull cant handle high dimensions.
 
 ## Hit-and-Run sampling
 
-Hiot-and-Run sampling works by taking a random starting point from within the polytope. Then, a random direction is drawn, and a line is created in the random direction which goes through the point. This line meets the boundary at two points. With the line defined, a sample is drawn from a random position along the line. 
+Hit-and-Run sampling works by taking a random starting point from within the polytope. Then, a random direction is drawn, and a line is created in the random direction which goes through the point. This line meets the boundary at two points. With the line defined, a sample is drawn from a random position along the line. 
 
 The Hit-and-Run process then continues iteratively, where the sample point on the line and a new random direction is used to create another line from which a sample is drawn, and so on.
