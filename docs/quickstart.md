@@ -26,6 +26,8 @@ With the vertices and directions found, the space can be sampled and analyzed.
 
 ```python
 # Import PyMAA
+import numpy as np
+import yaml
 import PyMAA
 
 # Load config file containing solver settings
@@ -36,15 +38,15 @@ with open('config.yaml') as f:
 variables = {'x1': ['Generator', # PyPSA Component type
                    ['wind'],     # PyPSA Carrier(s)
                    'p_nom',],    # PyPSA Component attribute to explore
-                 
+
              'x2': ['Generator',
                    ['coal'],
                     'p_nom',],
-                 
+
              'x3': ['Generator', 
                    ['solar'],
                     'p_nom',],
-                 } 
+             } 
 
 # PyMAA: Build case from PyPSA network
 case = PyMAA.cases.PyPSA_to_case(project_name = 'example_project',
@@ -53,12 +55,9 @@ case = PyMAA.cases.PyPSA_to_case(project_name = 'example_project',
                                  variables = variables,
                                  mga_slack = 0.1,
                                  )
-# PyMAA: Choose MAA method (Either MAA or bMAA)
-method = PyMAA.methods.bMAA(case) 
-
-# PyMAA: Solve optimal system
+# PyMAA: Choose MAA method (Either MAA or bMAA) and find optimum
+method       = PyMAA.methods.bMAA(case) 
 opt_sol, obj = method.find_optimum()
-
 
 # PyMAA: Search near-optimal space using chosen method. 
 # Find vertices (v) and directions (d)
@@ -73,13 +72,10 @@ samples = PyMAA.sampler.har_sample(n_samples = 1_000_000,
                                    vertices = v)
 
 ### ----- ANALYZING ----- #### ----------------------------------------
-
 # Find Chebyshev center and radius
 cheb_center, cheb_radius = PyMAA.utilities.general.calculate_cheb(v, d)
 
 # Create Matrix plot
-from PyMAA.utilities.plot import near_optimal_space_matrix
-
 PyMAA.utilities.plot.near_optimal_space_matrix(vertices = v,
                                                samples = samples,
                                                opt_solution = opt_sol,
