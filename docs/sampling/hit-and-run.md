@@ -21,7 +21,8 @@ The Hit-and-Run process then continues iteratively, where the sample point on th
 
 Hit-and-Run sampling is illustrated here:
 
-*insert image*
+![](hit-and-run_example.png)
+[*Image source*](https://www.researchgate.net/figure/Illustration-of-hit-and-run-Hit-and-run-starts-at-the-point-in-the-solution-space-It_fig5_260254555)
 
 ## PyMAA.sampler.har_sample()
 
