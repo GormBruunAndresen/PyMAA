@@ -109,6 +109,10 @@ class MAA:
                     total vertices {len(vertices)},
                     eps: {epsilon:.2f}""")
                     
+            # Convert to dataframes
+            vertices   = pd.DataFrame(vertices, columns = self.case.variables)
+            directions_searched = pd.DataFrame(directions_searched, columns = self.case.variables)
+                    
             # Save temporary results 
             if save_tmp_results:
                 tmp_results = {}
@@ -129,8 +133,5 @@ class MAA:
         end_time = time.time()
         print(f'\n PyMGA: Finished searching using MAA method \n Time used: {round(end_time - start_time,2)} s \n')
 
-        # Convert to dataframes
-        vertices   = pd.DataFrame(vertices, columns = self.case.variables)
-        directions_searched = pd.DataFrame(directions_searched, columns = self.case.variables)
 
         return vertices, directions_searched, stat, cost
