@@ -22,7 +22,7 @@ Plots a matrix plot of polytope projections onto all variable combinations. Save
 
 > Example from the example file example_3-bus_network_MAA.py: 
 > 
-> ```Python
+> ```python
 >  from PyMAA.utilities.plot import near_optimal_space_matrix
 > 
 >  near_optimal_space_matrix(vertices = vertices,
