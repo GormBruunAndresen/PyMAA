@@ -1,7 +1,7 @@
 ---
 layout: default
 title: MAA method
-parent: Search Methods
+parent: 2 Search Methods
 ---
 
 # MAA Method
@@ -60,8 +60,6 @@ Example: `opt_sol, obj, n_solved = method.find_optimum()`
 ## MAA.search_directions(n_samples, n_workers = 4, max_iter = 20, save_tmp_results = True )
 
 Performs the MAA analysis using the given method for the given case object. 
-
-
 
 **Parameters**
 

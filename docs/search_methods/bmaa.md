@@ -1,10 +1,19 @@
 ---
 layout: default
 title: bMAA method
-parent: Search Methods
+parent: 2 Search Methods
 ---
 
 # bMAA method
+
+### Table of contents
+
+- [bMAA method description](#bmaa-method-description)
+- [*class* PyMAA.methods.MAA(case)](#class-pymaamethodsmaacase)
+  - [find_optimum()](#find_optimum)
+  - [bMAA.search_directions(n_samples, har_samples, n_workers = 4, max_iter = 30, tol = 0.99, save_tmp_results = True )](#bmaasearch_directionsn_samples-har_samples-n_workers--4-max_iter--30-tol--099-save_tmp_results--true-)
+
+# bMAA method description
 
 > The bMAA method was first introduced in the paper Bounding the near-optimal solution space (Not yet published).
 
@@ -46,8 +55,6 @@ Example: `opt_sol, obj, n_solved = method.find_optimum()`
 ## bMAA.search_directions(n_samples, har_samples, n_workers = 4, max_iter = 30, tol = 0.99, save_tmp_results = True )
 
 Performs the MAA analysis using the given method for the given case object.
-
-
 
 **Parameters**
 
