@@ -64,7 +64,7 @@ if __name__ == '__main__':
     
     # PyMAA: Sample the near-optimal space
     # Bayesian bootstrap sampler, good up to around 8 dimensions
-    samples = PyMAA.sampler.bayesian_sampler(1_000_000, vertices) 
+    samples = PyMAA.sampler.bayesian_sample(1_000_000, vertices) 
     
     # Hit-and-Run sampler, slower but works in any dimensions.
     # samples = PyMAA.sampler.har_sample(1_000_000, x0 = np.zeros(len(variables.keys())), 
