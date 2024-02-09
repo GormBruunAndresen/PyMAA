@@ -8,6 +8,10 @@ parent: Utilities
 
 ### Table of contents
 
+- [Plotting the near-optimal space](#plotting-the-near-optimal-space)
+- [PyMAA.utilities.plot.near_optimal_space_matrix()](#pymaautilitiesplotnear_optimal_space_matrix)
+- [PyMAA.utilities.plot.near_optimal_space_slice()](#pymaautilitiesplotnear_optimal_space_slice)
+
 ## Plotting the near-optimal space
 
 As the near-optimal space is an *n*-dimensional polytope, plotting the results is challenging. PyMAA contains two plotting functions, both of which are based on projecting the polytope to 2D, and showing the histograms for each variable. 
