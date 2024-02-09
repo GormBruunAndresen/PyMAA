@@ -52,7 +52,7 @@ Find the optimum solution to the given case object. This is the same regardless 
 
 Example: `opt_sol, obj, n_solved = method.find_optimum()`
 
-## bMAA.search_directions(n_samples, har_samples, n_workers = 4, max_iter = 30, tol = 0.99, save_tmp_results = True )
+## bMAA.search_directions()
 
 Performs the MAA analysis using the given method for the given case object.
 

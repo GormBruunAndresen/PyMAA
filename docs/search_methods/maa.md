@@ -11,7 +11,7 @@ parent: 2 Search Methods
 - [MAA method description](#maa-method-description)
 - [*class* PyMAA.methods.MAA(case)](#class-pymaamethodsmaacase)
   - [find_optimum()](#find_optimum)
-  - [search_directions()](#search_directionsn_samples-n_workers--4-max_iter--20-save_tmp_results--true-)
+  - [MAA.search_directions()](#maasearch_directionsn_samples-n_workers--4-max_iter--20-save_tmp_results--true-)
 
 # MAA method description
 
@@ -57,7 +57,7 @@ Find the optimum solution to the given case object. This is the same regardless 
 
 Example: `opt_sol, obj, n_solved = method.find_optimum()`
 
-## MAA.search_directions(n_samples, n_workers = 4, max_iter = 20, save_tmp_results = True )
+## MAA.search_directions()
 
 Performs the MAA analysis using the given method for the given case object. 
 
