@@ -8,6 +8,9 @@ parent: 3 Sampling
 
 ### Table of contents
 
+- [Bayesian Bootstrap description](#bayesian-bootstrap-description)
+- [PyMAA.sampler.bayesian_sample()](#pymaasamplerbayesian_sample)
+
 ## Bayesian Bootstrap description
 
 > Read more about Bayesian Bootstrap Sampling at...
@@ -16,9 +19,7 @@ The Bayesian Bootstrap...
 
 **Pros**
 
-- 
-
-**Cons**
+- **Cons**
 
 - 
 
@@ -30,9 +31,7 @@ Bayesian Bootstrap sampling is illustrated here:
 
 **Parameters**
 
-- 
-
-**Returns**
+- **Returns**
 
 - 
 

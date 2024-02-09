@@ -1,5 +1,4 @@
 ---
-
 layout: default
 title: Hit-and-Run sampling
 parent: 3 Sampling
@@ -8,7 +7,6 @@ parent: 3 Sampling
 # Hit-and-Run sampling
 
 ### Table of contents
-
 - [Hit-and-Run description](#hit-and-run-description)
 - [PyMAA.sampler.har_sample()](#pymaasamplerhar_sample)
 
@@ -20,7 +18,11 @@ Hit-and-Run...
 
 **Pros**
 
+- 
+
 **Cons**
+
+- 
 
 Hit-and-Run sampling is illustrated here:
 
@@ -30,7 +32,9 @@ Hit-and-Run sampling is illustrated here:
 
 **Parameters**
 
-- **Returns**
+- 
+
+**Returns**
 
 - 
 
