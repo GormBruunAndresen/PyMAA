@@ -120,6 +120,17 @@ def check_small_volume(points_nD, p):
     return m.Status == 2
 
 def calculate_cheb(vertices, directions):
+    """
+    Calculate the Chebyshev center and radius of a polytope defined by vertices and directions.
+
+    Parameters:
+    - vertices (pd.DataFrame): DataFrame containing the vertices of the polytope.
+    - directions (pd.DataFrame): DataFrame containing the directions of the hyperplanes defining the polytope.
+
+    Returns:
+    - cheb_center (pd.DataFrame): DataFrame representing the coordinates of the Chebyshev center.
+    - cheb_radius (float): The radius of the Chebyshev ball inscribed in the polytope.
+    """
     import polytope as pt
     
     variables = vertices.columns
