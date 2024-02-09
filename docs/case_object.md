@@ -9,10 +9,10 @@ nav_order: 2
 ### Table of contents
 
 - [The Case object](#the-case-object)
-- [*class* PyMAA.cases.pypsa\_to\_case(project_name, config, base_network_path, extra_func = None, variables = None, tmp_network_path = 'tmp/networks/tmp.h5', n_snapshots = 8760, mga_slack = 0.1)](#class-pymaacasespypsa_to_caseproject_name-config-base_network_path-extra_func--none-variables--none-tmp_network_path--tmpnetworkstmph5-n_snapshots--8760-mga_slack--01)
-- [PyMAA.cases.Cube(dim,cuts)](#pymaacasescubedimcuts)
-- [PyMAA.cases.CubeCorr(dim)](#pymaacasescubecorrdim)
-- [PyMAA.cases.CrossPoly(dim)](#pymaacasescrosspolydim)
+- [*class* PyMAA.cases.pypsa\_to\_case()](#class-pymaacasespypsa_to_caseproject_name-config-base_network_path-extra_func--none-variables--none-tmp_network_path--tmpnetworkstmph5-n_snapshots--8760-mga_slack--01)
+- [*class* PyMAA.cases.Cube(dim,cuts)](#pymaacasescubedimcuts)
+- [*class* PyMAA.cases.CubeCorr(dim)](#pymaacasescubecorrdim)
+- [*class* PyMAA.cases.CrossPoly(dim)](#pymaacasescrosspolydim)
 
 ## The Case object
 
@@ -28,7 +28,7 @@ To be used in an MAA analysis, any case must include at least the following meth
 
 PyMAA has a built-in class for creating case objects from PyPSA networks, as well as classes for creating testcases for MGA and MAA analysis.
 
-## *class* PyMAA.cases.pypsa\_to\_case(project_name, config, base_network_path, extra_func, variables, tmp_network_path, n_snapshots, mga_slack)
+## *class* PyMAA.cases.pypsa\_to\_case()
 
 A class which creates case objects from pypsa networks.  
 
@@ -50,20 +50,20 @@ A class which creates case objects from pypsa networks.
 
 - mga_slack  
 
-## PyMAA.cases.Cube(dim,cuts)
+## *class* PyMAA.cases.Cube(dim,cuts)
 
 A synthetic tescase of testing MGA/MAA methods. The method creates an optimization problem with a solution space in the form of a cube sliced with n cuts. <br>
 
 *dim:* Number of dimensions of the test case 
 *cuts:* Number of cuts <br>
 
-## PyMAA.cases.CubeCorr(dim)
+## *class* PyMAA.cases.CubeCorr(dim)
 
 A synthetic tescase of testing MGA/MAA methods. The method creates an optimization problem with a solution space in the form of a cube sliced by parallel planes to give the space strong correlations between variables.<br>
 
 *dim:* Number of dimensions of the test case<br>
 
-## PyMAA.cases.CrossPoly(dim)
+## *class* PyMAA.cases.CrossPoly(dim)
 
 A synthetic tescase of testing MGA/MAA methods. The method creates an optimization problem with a solution space in the form of the intersection of a hyperube and a cross-polytope. <br>
 
