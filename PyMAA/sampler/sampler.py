@@ -66,7 +66,7 @@ def har_sample(n_samples, x0, directions, vertices):
 
     return samples
 
-def bayesian_sample(n_samples, vertices):
+def bayesian_sampler(n_samples, vertices):
     '''
     Bayesian Bootstrap sampler for generating samples within a polytope.
     Generates samples within a polytope by computing the convex hull from the 
