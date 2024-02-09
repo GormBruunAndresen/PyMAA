@@ -19,7 +19,9 @@ The Bayesian Bootstrap...
 
 **Pros**
 
-- **Cons**
+- 
+
+**Cons**
 
 - 
 
@@ -31,7 +33,9 @@ Bayesian Bootstrap sampling is illustrated here:
 
 **Parameters**
 
-- **Returns**
+- 
+
+**Returns**
 
 - 
 
