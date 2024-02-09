@@ -137,7 +137,7 @@ def calculate_cheb(vertices, directions):
     vertices = vertices.values
     directions = directions.values
     
-    if vertices.shape[1] <=7:
+    if vertices.shape[1] <=5:
         #If the dimensions are below 7, use convexhull to get more accurate 
         # calculation of the Chebyshev center
         
