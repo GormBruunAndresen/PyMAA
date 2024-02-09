@@ -4,6 +4,10 @@ A Python module for Modeling All Alternatives analysis.
 
 This was originally a fork of [PyMGA](https://github.com/TimToernes/PyMGA), but has diverged with additon of new features.
 
+## Documentation
+
+See [lukasbnordentoft.github.io/PyMAA/](https://lukasbnordentoft.github.io/PyMAA/) for documentation.
+
 ## Installation
 
 ###### Install with pip
