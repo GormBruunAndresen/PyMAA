@@ -3,12 +3,14 @@ import pandas as pd
 from ..utilities.general import check_large_volume, calc_x0, DirectionSampler
 
 
-def har_sample(n_samples, x0, directions, vertices):
+def har_sample(n_samples, x0, directions, vertices, as_dataframes = True):
     """ 
     Hit-and-Run sampler for generating samples within a polytope.
     Generates samples from within a polytope, which is defined as hyperplanes 
     by its vertices and directions. Vertices and directions are obtained from
     the MAA algorithm. The starting point (x0) must be within the polytope.
+    Returning as dataframes can be turned off, as dataframes are not supported
+    internally in the bMAA method, where this function is also used.
 
     Parameters:
     - n_samples (int): Number of samples to draw.
@@ -17,16 +19,18 @@ def har_sample(n_samples, x0, directions, vertices):
                                  MAA algorithm.
     - vertices (pd.DataFrame): Vertices found by searching in directions 
                                with the MAA algorithm.
+    - as_dataframes (bool): Whether to use dataframes for input and output
 
     Returns:
     - samples (pd.DataFrame): DataFrame containing generated samples.
     
     """
     
-    # # Take values without dataframes
-    # variables = vertices.columns
-    # vertices = vertices.values
-    # directions = directions.values
+    # Take values without dataframes
+    if as_dataframes == True:
+        variables = vertices.columns
+        vertices = vertices.values
+        directions = directions.values
     
     for i in range(10):
         if not check_large_volume(directions, vertices, x0, tol=1000):
@@ -62,7 +66,8 @@ def har_sample(n_samples, x0, directions, vertices):
         samples[j, :] = x_new
         x_i = x_new    
         
-    samples   = pd.DataFrame(samples)
+    if as_dataframes == True:
+        samples   = pd.DataFrame(samples, columns = variables)
 
     return samples
 

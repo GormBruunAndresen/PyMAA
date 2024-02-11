@@ -110,8 +110,11 @@ class bMAA:
             # Hit and run sample
             print(f'Hit and run sampling, {har_samples} samples')
             x0 = calc_x0(directions, vertices)
-            samples = har_sample(har_samples, x0, directions, vertices)
-            samples = samples.values
+            samples = har_sample(har_samples, x0, 
+                                 directions, vertices,
+                                 as_dataframes = False,
+                                 )
+            # samples = samples.values
 
             # Find acceptance rate
             acc_small = []
