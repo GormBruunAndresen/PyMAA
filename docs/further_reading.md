@@ -1,5 +1,5 @@
 ---
-title: Installation
+title: Further reading
 layout: default
 nav_order: 10
 ---
