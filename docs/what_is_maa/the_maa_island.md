@@ -32,7 +32,7 @@ You decide to search the island by walking in a direction until you've walked fo
 
 With your map of the *near-optimal area*, you can now decide where you want to camp. You have found that:
 
-* The lake is at the edge of the area with predators, so staying there entails a risk. 
+* The lake is at the edge of the area with predators, so staying there entails a small risk. 
 
 * There is an area with good hunting grounds at a safe distance from the predators, but also the max distance away from the lake. 
 
