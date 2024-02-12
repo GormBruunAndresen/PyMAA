@@ -1,7 +1,6 @@
 ---
 title: The MAA island
 layout: default
-nav_order: 1
 parent: What is MAA?
 ---
 
