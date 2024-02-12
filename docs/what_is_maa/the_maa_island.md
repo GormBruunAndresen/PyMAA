@@ -1,5 +1,5 @@
 ---
-title: Analogy: The MAA island
+title: Analogy - The MAA island
 layout: default
 parent: What is MAA?
 ---
