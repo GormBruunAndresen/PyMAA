@@ -8,19 +8,19 @@ parent: What is MAA?
 
 To illustrate the MAA concept, imagine you are stranded on an island, and you need to determine where to build a camp. The island has a freshwater lake, an area with coconut palms, an area with good hunting grounds and an area with dangerous predators.
 
-**The optimal location**
+### The optimal location
 
 You know that freshwater is crucial, so you base your search around the availablility of freshwater. You end up at the lake, which is the *optimal* location based on freshwater availability. 
 
 > The MAA method always starts by finding the *optimal* solution to a problem, and the *optimal* objective function value.
 
-**Limiting your search**
+### Limiting your search
 
 You have found the place with the best freshwater access, so this is where you camp, right? If your only concern is freshwater, then yes. But you think that in the vicinity, there might be a better place. To know your possibilities, you want to look around the island, but you limit your search to stay close enough to the lake that you can reach it in 30 minutes if you need water.
 
 > In the MAA method, the *MGA constraint* limits the area to search, by setting a new constraint which says that the objective function value when searching can be greater than the *optimal* objective function value times by a percentage, such as 10%.
 
-**Searching the island**
+### Searching the island
 
 You decide to search the island by walking in a direction until you've walked for 30 minutes, or you meet an obstacle. While doing so, you draw a map. When you've searched in one direction, you return to the lake, and search in another direction. This is time-consuming, but you discover many different areas. This way, you eventually map the surrounding area which is close to the *optimal* freshwater spot, aka. the *near-optimal* area. 
 
@@ -28,7 +28,7 @@ You decide to search the island by walking in a direction until you've walked fo
 > 
 > In the MAA method, only select variables are used when searching, to limit the dimensionality. 
 
-**Decision time**
+### Decision time
 
 With your map of the *near-optimal area*, you can now decide where you want to camp. You have found that:
 
