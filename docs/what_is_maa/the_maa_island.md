@@ -25,6 +25,8 @@ You have found the place with the best freshwater access, so this is where you c
 Now, you can search the island. You decide to do this by walking in a direction until you've walked for 20 minutes, or you meet something that makes it impossible to continue. While doing so, you draw a map. When you've searched in one direction, you return to the lake, and search in another direction. This is time-consuming, but you discover many different areas. This way, you eventually map the surrounding area which is close to the *optimal* freshwater spot, aka. the *near-optimal* area. 
 
 > In the MAA method, searching is done by changing the objective function to search away from the optimum. Eventually, this either meets *MGA constraint* or another constraint, and the search stops. This maps the *near-optimal space*.
+> 
+> In the MAA method, only select variables are used when searching, to limit the dimensionality.
 
 **Decision time**
 
