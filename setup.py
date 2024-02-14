@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
 setup(name='PyMAA',
-      version='0.1.8',
+      version='0.1.9',
       description='A Python library for Modeling All Alternatives',
       url='https://github.com/LukasBNordentoft/PyMAA_LBN',
-      download_url = 'https://github.com/LukasBNordentoft/PyMAA/archive/refs/tags/v0.1.8.tar.gz',
+      download_url = 'https://github.com/LukasBNordentoft/PyMAA/archive/refs/tags/v0.1.9.tar.gz',
       author='Tim Pedersen',
       author_email='timtoernes@gmail.com',
       maintainer = 'Lukas B. Nordentoft',
