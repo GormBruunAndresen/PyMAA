@@ -55,6 +55,10 @@ $$ \begin{align}
 \end{align}
 $$
 
-As increasingly more boundary points are found, the polytope which consititutes the near-optimal space is gradually revealed. 
+Where $$n$$ is a search direction. Each time this optimization problem is solved, a boundary point (vertex) corresponding to the search direction is found.
+
+As increasingly more boundary points (vertices) are found, the polytope which consititutes the near-optimal space is gradually revealed. 
+
+The end result is a set of points in $$m$$-dimensional space which are the vertices of the polytope, and the corresponding search directions. This is the v-representation (vertex representation) of the polytope, from which the h-representation (hyperplane representation) of the polytope can be constructed, which is relevant for high-dimensional MAA analyses.
 
 ## Sampling
