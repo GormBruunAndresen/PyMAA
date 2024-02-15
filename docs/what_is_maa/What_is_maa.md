@@ -34,13 +34,16 @@ W = (\mathbf{x}|\mathbf{x} \in X, \quad f(\mathbf{x}) \leq f(\mathbf{x}^*) )
 \end{equation}
 $$
 
+The resulting near-optimal space will be $$n$$-dimensional, where $$n$$ is the amount of variables which chosen for the MAA method. The near-optimal space will be an $$n$$-dimensional polytope.
+
 These definitions originate from Modelling To Generate Alternatives (MGA), and are shared betwene MGA and MAA. However, typical MGA methods differ from MAA methods in that they aim to find a number of near-optimal alternatives on the boundary of the near-optimal space, whereas the MAA method aims to find the entire continous near-optimal space. The following figure illustrates the near-optimal space for a simple optimization problem.
 
-![](nos_illustration.png)
+![](nos_illustration.png)   
+
 *Image from [Modeling all alternative solutions for highly renewable energy systems](https://doi.org/10.1016/j.energy.2021.121294)*
 
 ## Searching for vertices
 
-With the modelling definition of the near-optimal space in order, it must now be mapped. To do this, the MAA method 
+With the modelling definition of the near-optimal space in order, it must now be mapped.
 
 ## Sampling
