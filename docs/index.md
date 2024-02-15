@@ -16,7 +16,7 @@ The PyMAA package aims to make it easy to perform an MAA analysis on an optimiza
 
 This was originally a fork of [PyMGA](https://github.com/TimToernes/PyMGA), but has diverged with new features and formatting.
 
-### What is Modeling All Alternatives
+### What is Modeling All Alternatives?
 
 Modeling All Alternatives is an analysis method for optimization problems, aimed at defining the near-optimal feasible space of a convex optimization problem. It is a branch of Modeling to Generate Alternatives (MGA). 
 
