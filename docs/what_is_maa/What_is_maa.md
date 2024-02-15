@@ -3,6 +3,7 @@ title: What is MAA?
 layout: default
 nav_order: 3
 has_children: True
+mathjax: True
 ---
 
 # What is Modelling All Alternatives (MAA)?

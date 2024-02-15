@@ -9,3 +9,6 @@ aux_links:
 
 # Build settings
 markdown: kramdown
+
+compress_html:
+  blanklines: true
