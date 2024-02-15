@@ -16,7 +16,7 @@ This page serves as a walk-through of the overall method.
 
 ## The MGA constraint
 
-To find the near-optimal space, it is necessary to determine what is near-optimal. To do this, the optimal solution and optimal objective value must be known. With the optimal objective value known, the MGA constraint is formualted and imposed on the optimization problem. The MGA constraint is:
+To find the near-optimal space, it is necessary to answear the question "What is near-optimal?". Near-optimal solutions are defined as solutions which are acceptably close to the optimum. So, to find out what is near-optimal, the optimal solution and optimal objective value must be known, and a user-defined acceptable deviation must be chosen. When these parameters are known, the MGA constraint is formualted and imposed on the optimization problem. The MGA constraint is:
 
 $$ \begin{equation}
 f(\mathbf{x}) \leq f(\mathbf{x}^*) \cdot (1+\epsilon)
@@ -24,13 +24,9 @@ f(\mathbf{x}) \leq f(\mathbf{x}^*) \cdot (1+\epsilon)
 \end{equation}
 $$
 
-<!---
-![](mga_constraint.png)
--->
+Where $$f(\mathbf{x})$$ is the objective function value, $$f(\mathbf{x}^*)$$ is the optimal objective function value, and $$\epsilon$$ is the percentage slack on the objective function value, which determines how much the objective value is allowed to deviate from the optimum. 
 
-Where $$f(\mathbf{x})$$ is the objective function value, $$f(\mathbf{x}^*)$$ is the optimal objective function value, and $$\epsilon$$ is the percentage slack on the objective function value, which determines how much the objective value is allowed to deviate from the optimum. reference: $$\ref{mga_constraint}$$
-
-The near-optimal space, $W$, can then be defined as a subspace of the feasible space, $X$, as:
+The near-optimal space, $$W$$, can then be defined as a subspace of the feasible space, $$X$$, as:
 
 $$ \begin{equation}
 W = (\mathbf{x}|\mathbf{x} \in X, \quad f(\mathbf{x}) \leq f(\mathbf{x}^*) )
@@ -38,10 +34,13 @@ W = (\mathbf{x}|\mathbf{x} \in X, \quad f(\mathbf{x}) \leq f(\mathbf{x}^*) )
 \end{equation}
 $$
 
-<!--
-![](near_optimal_space_definition.png)
--->
+These definitions originate from Modelling To Generate Alternatives (MGA), and are shared betwene MGA and MAA. However, typical MGA methods differ from MAA methods in that they aim to find a number of near-optimal alternatives on the boundary of the near-optimal space, whereas the MAA method aims to find the entire continous near-optimal space. The following figure illustrates the near-optimal space for a simple optimization problem.
+
+![](nos_illustration.png)
+*Image from [Modeling all alternative solutions for highly renewable energy systems](https://doi.org/10.1016/j.energy.2021.121294)*
 
 ## Searching for vertices
+
+With the modelling definition of the near-optimal space in order, it must now be mapped. This is odne by  
 
 ## Sampling
