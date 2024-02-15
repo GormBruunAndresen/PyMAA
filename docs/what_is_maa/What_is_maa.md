@@ -44,6 +44,17 @@ These definitions originate from Modelling To Generate Alternatives (MGA), and a
 
 ## Searching for vertices
 
-With the modelling definition of the near-optimal space in order, it must now be mapped.
+With the modelling definition of the near-optimal space in order, it must now be mapped. This is done by searching in a direction in the $$n$$-dimensional space, and finding the boundary in that direction. The search method can be random, but structured search methods are used in the MAA method (see bMAA and MAA under "2 Search Methods"). Searching is done by minimizing the MAA objective function, formulated as:
+
+$$ \begin{align}
+\text{minimize} & \quad f_{\text{MAA}}(\mathbf{x}) = \mathbf{n} \cdot \mathbf{x} \\\
+
+\text{Subject to} & \quad \mathbf{x} \in W
+
+\label{maa_problem}
+\end{align}
+$$
+
+As increasingly more boundary points are found, the polytope which consititutes the near-optimal space is gradually revealed. 
 
 ## Sampling
