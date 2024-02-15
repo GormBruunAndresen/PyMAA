@@ -23,11 +23,12 @@ f(\mathbf{x}) \leq f(\mathbf{x}^*) \cdot (1+\epsilon)
 \label{mga_constraint}
 \end{equation}
 $$
+
 <!---
 ![](mga_constraint.png)
 -->
 
-Where $f(\mathbf{x}$) is the objective function value, $f(\mathbf{x}^*)$ is the optimal objective function value, and $\epsilon$ is the percentage slack on the objective function value, which determines how much the objective value is allowed to deviate from the optimum.
+Where $$f(\mathbf{x})$$ is the objective function value, $$f(\mathbf{x}^*)$$ is the optimal objective function value, and $$\epsilon$$ is the percentage slack on the objective function value, which determines how much the objective value is allowed to deviate from the optimum. reference: $$\ref{mga_constraint}$$
 
 The near-optimal space, $W$, can then be defined as a subspace of the feasible space, $X$, as:
 
