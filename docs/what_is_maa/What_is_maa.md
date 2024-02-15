@@ -41,6 +41,6 @@ These definitions originate from Modelling To Generate Alternatives (MGA), and a
 
 ## Searching for vertices
 
-With the modelling definition of the near-optimal space in order, it must now be mapped. This is odne by  
+With the modelling definition of the near-optimal space in order, it must now be mapped. To do this, the MAA method 
 
 ## Sampling
