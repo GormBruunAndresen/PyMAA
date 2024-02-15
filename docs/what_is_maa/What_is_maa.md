@@ -17,13 +17,23 @@ This page serves as a walk-through of the overall method.
 
 To find the near-optimal space, it is necessary to determine what is near-optimal. To do this, the optimal solution and optimal objective value must be known. With the optimal objective value known, the MGA constraint is formualted and imposed on the optimization problem. The MGA constraint is:
 
+<!---
+
 $1) \qquad f(\mathbf{x}) \leq f(\mathbf{x}^*) \cdot (1+\epsilon)$
+
+-->
+
+![](mga_constraint.png)
 
 Where $f(\mathbf{x}$) is the objective function value, $f(\mathbf{x}^*)$ is the optimal objective function value, and $\epsilon$ is the percentage slack on the objective function value, which determines how much the objective value is allowed to deviate from the optimum.
 
 The near-optimal space, $W$, can then be defined as a subspace of the feasible space, $X$, as:
 
+<!--
 $2) \qquad W = (\mathbf{x}|\mathbf{x} \in X, \quad f(\mathbf{x}) \leq f(\mathbf{x}^*) )$ 
+-->
+
+![](near_optimal_space_definition.png)
 
 ## Searching for vertices
 
