@@ -34,7 +34,7 @@ W = (\mathbf{x}|\mathbf{x} \in X, \quad f(\mathbf{x}) \leq f(\mathbf{x}^*) )
 \end{equation}
 $$
 
-The resulting near-optimal space will be $$n$$-dimensional, where $$n$$ is the amount of variables which chosen for the MAA method. The near-optimal space will be an $$n$$-dimensional polytope.
+The resulting near-optimal space will be $$m$$-dimensional, where $$m$$ is the amount of variables which chosen for the MAA method. The near-optimal space will be an $$m$$-dimensional polytope.
 
 These definitions originate from Modelling To Generate Alternatives (MGA), and are shared betwene MGA and MAA. However, typical MGA methods differ from MAA methods in that they aim to find a number of near-optimal alternatives on the boundary of the near-optimal space, whereas the MAA method aims to find the entire continous near-optimal space. The following figure illustrates the near-optimal space for a simple optimization problem.
 
@@ -44,7 +44,7 @@ These definitions originate from Modelling To Generate Alternatives (MGA), and a
 
 ## Searching for vertices
 
-With the modelling definition of the near-optimal space in order, it must now be mapped. This is done by searching in a direction in the $$n$$-dimensional space, and finding the boundary in that direction. The search method can be random, but structured search methods are used in the MAA method (see bMAA and MAA under "2 Search Methods"). Searching is done by minimizing the MAA objective function, formulated as:
+With the modelling definition of the near-optimal space in order, it must now be mapped. This is done by searching in a direction in the $$m$$-dimensional space, and finding the boundary in that direction. The choice of direction can be random, but structured ways of choosing the directions are used in the MAA method (see bMAA and MAA under "2 Search Methods"). Searching is done by minimizing the MAA objective function, formulated as:
 
 $$ \begin{align}
 \text{minimize} & \quad f_{\text{MAA}}(\mathbf{x}) = \mathbf{n} \cdot \mathbf{x} \\\
