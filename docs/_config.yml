@@ -6,3 +6,6 @@ url: https://lukasbnordentoft.github.io/PyMAA/
 
 aux_links:
   Template Repository: https://github.com/just-the-docs/just-the-docs-template
+
+# Build settings
+markdown: kramdown

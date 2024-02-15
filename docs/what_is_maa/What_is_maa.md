@@ -3,6 +3,7 @@ title: What is MAA?
 layout: default
 nav_order: 3
 has_children: True
+usemathjax: true
 ---
 
 # What is Modelling All Alternatives (MAA)?
@@ -16,6 +17,8 @@ This page serves as a walk-through of the overall method.
 ## The MGA constraint
 
 To find the near-optimal space, it is necessary to determine what is near-optimal. To do this, the optimal solution and optimal objective value must be known. With the optimal objective value known, the MGA constraint is formualted and imposed on the optimization problem. The MGA constraint is:
+
+$$test_{one} = 2 \cdot 5$$
 
 <!---
 
