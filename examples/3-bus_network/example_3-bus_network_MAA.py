@@ -44,8 +44,9 @@ if __name__ == '__main__':
 
     #### PyMAA #### -----------------------------------------------------------
     # PyMAA: Build case from PyPSA network
-    case = PyMAA.cases.PyPSA_to_case(config, 
-                                     network_path,
+    case = PyMAA.cases.PyPSA_to_case(project_name = 'example',
+                                     config = config, 
+                                     base_network_path = network_path,
                                      variables = variables,
                                      mga_slack = 0.1,
                                      )
@@ -56,7 +57,7 @@ if __name__ == '__main__':
     # method = PyMAA.methods.MGA(case) 
     
     # PyMAA: Solve optimal system
-    opt_sol, obj, n_solved = method.find_optimum()
+    opt_sol, obj = method.find_optimum()
     
     # PyMAA: Search near-optimal space using chosen method
     vertices, directions, _, _ = method.search_directions(n_samples = n_boundary_points,
