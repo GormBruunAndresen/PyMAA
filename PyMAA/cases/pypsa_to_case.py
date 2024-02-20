@@ -34,8 +34,18 @@ logger = setup_applevel_logger('TestCase')
 
 class PyPSA_to_case:
     '''
-    A class that takes a pypsa networks and translates it into a case for the
-    MGA/MAA/bMAA algorithms in the PyMGA package.
+    A class that translates a PyPSA network into a case for the MGA/MAA/bMAA
+    algorithms in the PyMGA package.
+
+    Parameters:
+    - project_name (str): Name of the project.
+    - config (dict): Configuration parameters for solving the network.
+    - base_network_path (str): Path to the base PyPSA network or network file.
+    - extra_func (callable, optional): Extra function to be used during network solving.
+    - variables (dict, optional): Dictionary of variables used in the network.
+    - tmp_network_path (str, optional): Path to store the temporary network file.
+    - n_snapshots (int, optional): Number of snapshots to consider.
+    - mga_slack (float, optional): Slack parameter for MGA algorithm.
     '''
     def __init__(self,
                  project_name,
