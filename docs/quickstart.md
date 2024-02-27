@@ -59,8 +59,10 @@ case = PyMAA.cases.PyPSA_to_case(project_name = 'example_project',
 method       = PyMAA.methods.bMAA(case) 
 opt_sol, obj = method.find_optimum()
 
-# PyMAA: Search near-optimal space using chosen method. 
+# PyMAA: Search near-optimal space using chosen method.
 # Find vertices (v) and directions (d)
+# Set how many vertices to find, and how many workers (CPU threads) to
+# use for search
 v, d, stat, cost = method.search_directions(n_samples = 32,
                                             n_workers = 16)
 

@@ -32,23 +32,37 @@ PyMAA has a built-in class for creating case objects from PyPSA networks, as wel
 
 A class which creates case objects from pypsa networks.  
 
+> Example:
+> 
+> ```python
+> # Define variables in the network to explore
+>  variables = {'x1': ['Generator',  # [str] Component type
+>                      ['wind']   ,  # [list] Carrier(s)
+>                      'p_nom'    ], # [str] Component attribute to explore
+>               'x2': ['Generator',
+>                      ['coal']   ,
+>                      'p_nom'    ]} 
+> 
+> case = PyMAA.cases.PyPSA_to_case(project_name = 'example',
+>                                  config = config, 
+>                                  base_network_path = 'network.nc',
+>                                  variables = variables,
+>                                  mga_slack = 0.1,
+>                                  )
+> ```
+
 **Parameters**  
 
-- Project name - 
-
-- config - 
-
-- base_network_path - 
-
-- extra_func - 
-
-- variables - 
-
-- tmp_network_path - 
-
-- n_snapshots - 
-
-- mga_slack  
+| Name              | Type               | Description                                                                                                                         |
+| ----------------- | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| project_name      | str                | Name of the project. Used when saving the temporary results during search.                                                          |
+| config            | dict               | Configuration parameters for solving the network. passed as options to PyPSA.                                                       |
+| base_network_path | str                | Path to the base PyPSA network. PyPSA network must be saved as .nc                                                                  |
+| extra_func        | callable, optional | Extra function(s) to be used during network solving. Is passed to extra_functionality in PyPSA, can be used for custom constraints. |
+| variables         | dict, optional     | Dictionary of variables used in the network.                                                                                        |
+| tmp_network_path  | str, optional      | Path to store the temporary network file.                                                                                           |
+| n_snapshots       | int, optional      | Number of snapshots to consider. **Note:** MUST currently be 8670.                                                                  |
+| mga_slack         | float, optional    | Allowed slack on the objective function, for implementing the MGA constraint. default 0.1 (10%).                                    |
 
 ## *class* PyMAA.cases.Cube(dim,cuts)
 

@@ -12,6 +12,7 @@ Description:
 
 import PyMAA
 import yaml
+import numpy as np
 
 #%%
 
@@ -44,8 +45,9 @@ if __name__ == '__main__':
 
     #### PyMAA #### -----------------------------------------------------------
     # PyMAA: Build case from PyPSA network
-    case = PyMAA.cases.PyPSA_to_case(config, 
-                                     network_path,
+    case = PyMAA.cases.PyPSA_to_case(project_name = 'example',
+                                     config = config, 
+                                     base_network_path = network_path,
                                      variables = variables,
                                      mga_slack = 0.1,
                                      )
@@ -56,7 +58,7 @@ if __name__ == '__main__':
     # method = PyMAA.methods.MGA(case) 
     
     # PyMAA: Solve optimal system
-    opt_sol, obj, n_solved = method.find_optimum()
+    opt_sol, obj = method.find_optimum()
     
     # PyMAA: Search near-optimal space using chosen method
     vertices, directions, _, _ = method.search_directions(n_samples = n_boundary_points,
@@ -64,11 +66,13 @@ if __name__ == '__main__':
     
     # PyMAA: Sample the near-optimal space
     # Bayesian bootstrap sampler, good up to around 8 dimensions
-    samples = PyMAA.sampler.bayesian_sample(1_000_000, vertices) 
+    # samples = PyMAA.sampler.bayesian_sample(1_000_000, vertices) 
     
     # Hit-and-Run sampler, slower but works in any dimensions.
-    # samples = PyMAA.sampler.har_sample(1_000_000, x0 = np.zeros(len(variables.keys())), 
-    #                                    directions = directions, verticies = vertices)
+    samples = PyMAA.sampler.har_sample(1_000_000, 
+                                       x0 = np.zeros(len(vertices.columns)), 
+                                       directions = directions, 
+                                       vertices = vertices)
 
     
 
@@ -82,22 +86,20 @@ if __name__ == '__main__':
     # near-optimal slice plot
     from PyMAA.utilities.plot import near_optimal_space_slice
 
-    near_optimal_space_slice(all_variables = list(variables.keys()), 
-                             chosen_variables = ['x1', 'x2'], 
-                             vertices = vertices, 
-                             samples = samples,
-                             opt_solution = opt_sol,
-                             )
+    near_optimal_space_slice(chosen_variables = ['x1', 'x2'], 
+                              vertices = vertices,
+                              samples = samples,
+                              opt_solution = opt_sol,
+                              )
     
     # Matrix plot
     from PyMAA.utilities.plot import near_optimal_space_matrix
 
-    ax, fig = near_optimal_space_matrix(variables = list(variables.keys()), 
-                                        vertices = vertices,
+    ax, fig = near_optimal_space_matrix(vertices = vertices,
                                         samples = samples,
                                         opt_solution = opt_sol,
                                         cheb_center = cheb_center,
-                                        plot_boundary = False,
+                                        plot_vertices = True,
                                         )
 
 
