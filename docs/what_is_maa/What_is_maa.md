@@ -34,7 +34,7 @@ W = (\mathbf{x}|\mathbf{x} \in X, \quad f(\mathbf{x}) \leq f(\mathbf{x}^*) )
 \end{equation}
 $$
 
-The resulting near-optimal space will be $$m$$-dimensional, where $$m$$ is the amount of variables which chosen for the MAA method. The near-optimal space will be an $$m$$-dimensional polytope.
+The resulting near-optimal space will be an $$m$$-dimensional polytope, where $$m$$ is the amount of variables which are chosen for investigation in the MAA method. 
 
 These definitions originate from Modelling To Generate Alternatives (MGA), and are shared betwene MGA and MAA. However, typical MGA methods differ from MAA methods in that they aim to find a number of near-optimal alternatives on the boundary of the near-optimal space, whereas the MAA method aims to find the entire continous near-optimal space. The following figure illustrates the near-optimal space for a simple optimization problem.
 
@@ -62,3 +62,9 @@ As increasingly more boundary points (vertices) are found, the polytope which co
 The end result is a set of points in $$m$$-dimensional space which are the vertices of the polytope, and the corresponding search directions. This is the v-representation (vertex representation) of the polytope, from which the h-representation (hyperplane representation) of the polytope can be constructed, which is relevant for high-dimensional MAA analyses.
 
 ## Sampling
+
+As the optimization problem is convex, any discrete point within the near-optimal space is a feasible solution. Since the near-optimal space is mathematically defined, a solution form within the space can be found by mathematical sampling of a polytope, rather than solving the optimization problem. This reduces the computational power required substantially, and makes it possible to draw a large (10.000+) number of samples quickly.
+
+These samples can then be used to determine technology correlations, and observe which variable values arise most frequently for each variable being investigated.
+
+However, it should be noted that the information in these samples are limited, as they only contain information about the values of the variables, and not the underlying system. For instance, for an energy system where wind turbine capacity and solar PV capacity are chosen as variables, these samples will only be able to show the capacities, and not other parts of the system, such as time-series. To obtain these, it is necessary to solve the optimization problem.
