@@ -12,11 +12,12 @@ Sampling the polytope evenly is often relevant. PyMAA has two methods of even sa
 ## Bayesian Bootstrap sampling
 
 > **Note:**
-> Bayesian Bootstrap is not suited for high-dimension polytopes (6+ dimensions) because it relies on the v-representation by calculating the convex hull, but QuickHull cant handle high dimensions.
+> Not suited for high-dimension polytopes (6+ dimensions) because it relies on the v-representation by calculating the convex hull, but QuickHull cant handle high dimensions.
 
 Bayesian Bootstrap sampling works by splitting the polytope into simplexes, and drawing samples from within these simplexes.
 
 ## Hit-and-Run sampling
+
 > **Note:**
 > Works in any directions, using h-representation of the polytope
 
