@@ -17,8 +17,7 @@ Sampling the polytope evenly is often relevant. PyMAA has two methods of even sa
 Bayesian Bootstrap sampling works by splitting the polytope into simplexes, and drawing samples from within these simplexes.
 
 ## Hit-and-Run sampling
-
-Hit-and-Run sampling works by iteratively drawing lines in random directions within the polytope, taking a sample at a random point along the line and creating a new line in a random direction at the sampled point.
-
 > **Note:**
 > Works in any directions, using h-representation of the polytope
+
+Hit-and-Run sampling works by iteratively drawing lines in random directions within the polytope, taking a sample at a random point along the line and creating a new line in a random direction at the sampled point.
