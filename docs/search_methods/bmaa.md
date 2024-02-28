@@ -21,13 +21,9 @@ The bMAA method (Bounded Modlling All Alterntaives) uses hyperplanes to define t
 
  This continues iteratively, until the search is stopped by a user defined criteria. 
 
-**Pros**
-
-- Can be used with problems in any dimension
-
-**Cons**
-
-- Result is not as conservative as the convex hull
+> **Pros**: Suitable for problems of any dimension
+> 
+> **Cons**: Polytope not defined as the convex hull, but as the hyperplanes defined by the search directions and found vertices.
 
 The bMAA method bounds are illustrated here:
 ![](bmaa_method_illustration.png)

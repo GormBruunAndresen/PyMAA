@@ -18,7 +18,6 @@ Both methods start by minimizing and maximizing each variable, to establish the 
 The MAA method relies on the computation of the convex hull of the polytope, defined by the vertices. The search directions are set as the face-normal directions, and the analysis stops when the volume of the convex hull stops changing significantly.
 
 > **Pros**: Polytope is defined as the convex hull of the vertices, and search directions are likely yo yield good results.
-> 
 > **Cons**: unsuited for high dimension (6+ dimensions) problems, because the QuickHull algorithm does not handle it well.
 
 ## bMAA Method
@@ -28,5 +27,4 @@ The MAA method relies on the computation of the convex hull of the polytope, def
 The bMAA method relies on h-representation of the polytope, and chooses search-directions based on which directions are likely to discover the most new space. The bMAA method stops at user-defined points, such as number of vertices found.
 
 > **Pros**: Suitable for problems of any dimension
-> 
 > **Cons**: Polytope not defined as the convex hull, but as the hyperplanes defined by the search directions and found vertices.

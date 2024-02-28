@@ -23,15 +23,9 @@ In the following iteration, the new vertices are included, a new hull is calcula
 
 This continues iteratively, until a stopping criteria is met. For the MAA method, the search typically stops when the volume change of the hull between iterations falls below a set tolerance.
 
-**Pros**
-
-- The convex hull of the polytope is well-defined by the quickhull algorithm
-
-- Search directions are likely to yield good results
-
-**Cons**
-
-- Cannot be used with 7-8 or more variables, depending on problem complexity. This is because the QuickHull algorithm cannot handle high-dimension problems.
+> **Pros**: Polytope is defined as the convex hull of the vertices, and search directions are likely yo yield good results.
+> 
+> **Cons**: unsuited for high dimension (6+ dimensions) problems, because the QuickHull algorithm does not handle it well.
 
 The MAA method is illustrated here:
 
