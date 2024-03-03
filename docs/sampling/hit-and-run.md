@@ -15,7 +15,7 @@ parent: 3 Sampling
 
 > Read more about Hit-and-Run sampling [Here](https://link.springer.com/referenceworkentry/10.1007/978-1-4419-1153-7_1145)
 
-Hit-and-Run sampling works by taking a random starting point from within the polytope. Then, a random direction is drawn, and a line is created in the random direction which goes through the point. This line meets the boundary at two points. With the line defined, a sample is drawn from a random position along the line.
+Hit-and-Run sampling works by taking a random starting point ($$x_0$$) from within the polytope. Then, a random direction ($$u_1$$) is drawn, and a line ($$\lambda_1$$) is created in the random direction which goes through the point. With the line defined, a sample ($$x_1$$) is drawn from a random position along the line.
 
 The Hit-and-Run process then continues iteratively, where the sample point on the line and a new random direction is used to create another line from which a sample is drawn, and so on.
 
@@ -45,7 +45,7 @@ Sample evenly within a polytope using the Hit-and-Run method. If initial point, 
 | ---------- | ------------- | ----------------------------------------------------------------- |
 | n_samples  | int           | Number of samples to draw.                                        |
 | x0         | numpy.ndarray | Starting point for the sampler.                                   |
-| directions | pd.DataFrame  | Directions that have been searched with the MAA algorithm.        |
+| directions | pd.DataFrame  | Directions that have been searched in using the MAA algorithm.    |
 | vertices   | pd.DataFrame  | Vertices found by searching in directions with the MAA algorithm. |
 
 **Returns**
