@@ -2,7 +2,7 @@
 layout: default
 title: Hit-and-Run sampling
 parent: 3 Sampling
-
+mathjax: True
 ---
 
 # Hit-and-Run sampling
