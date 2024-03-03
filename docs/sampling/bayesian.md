@@ -20,7 +20,7 @@ Bayesian Bootstrap sampling works by calculating the convex hull representation 
 
 Each simplex, $$P$$, is represented by its vertices, $$P = \{p^1, p^2, ..., p^{d+1}\}$$, where $$d$$ is the dimension of the polytope from which the simplexes originate.  The vectors pointing to these vertices are contained in the set of vectors, $$V = \{\mathbf{V}_1, \mathbf{V}_2, ..., \mathbf{V}_{d+1} \}$$. These vectors will be used to draw a random sample, once they have been scaled using the scaling vector, $$\mathbf{s}$$. 
 
-The scaling vectors, $$\mathbf{s}$$, has the property that $$\sum_i \mathbf{s} = 1$$. To construct $$\mathbf{s}$$, the random vector $$r$$ must be constructed. $$\mathbf{r}$$ is constructed by by drawing $$d$$ random numbers from a normal distribution between 0 and 1, sorting them in ascending order, and then adding 0 as the first element and 1 as the last element. For a polytope with $$d = 3$$, $$\mathbf{r}$$ could be:
+The sum of the elements of the scaling vectors, $$\mathbf{s}$$,  must be 1, aka: $$\sum_i \mathbf{s} = 1$$. To construct $$\mathbf{s}$$, the random vector $$r$$ must be constructed. $$\mathbf{r}$$ is constructed by by drawing $$d$$ random numbers from a normal distribution between 0 and 1, sorting them in ascending order, and then adding 0 as the first element and 1 as the last element. For a polytope with $$d = 3$$, $$\mathbf{r}$$ could be:
 
 $$
 \begin{equation}
@@ -37,7 +37,7 @@ $$
 \end{equation}
 $$
 
-The example vector from equation $$\ref{eq:r}$$ thus results in $$\mathbf{s} = \{0.23, 0.22, 0.46, 0.09\}$$. $$\mathbf{s}$$ and $$\mathbf{V}$$ ends up having the same number of elements.
+This method ensures that the sum of the elements of $$\mathbf{s}$$ is 1. The example vector from equation $$\ref{eq:r}$$ thus results in $$\mathbf{s} = \{0.23, 0.22, 0.46, 0.09\}$$. $$\mathbf{s}$$ and $$\mathbf{V}$$ ends up having the same number of elements.
 
 With the scaling vector $$\mathbf{s}$$ constructed from the random vector $$\mathbf{r}$$, a new sample point can the be drawn from within the simplex, as:
 
