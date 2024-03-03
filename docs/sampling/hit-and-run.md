@@ -2,6 +2,7 @@
 layout: default
 title: Hit-and-Run sampling
 parent: 3 Sampling
+
 ---
 
 # Hit-and-Run sampling
