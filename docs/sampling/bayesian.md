@@ -37,7 +37,7 @@ $$
 \end{equation}
 $$
 
-This method ensures that the sum of the elements of $$\mathbf{s}$$ is 1. The example vector from equation $$\ref{eq:r}$$ thus results in $$\mathbf{s} = \{0.23, 0.22, 0.46, 0.09\}$$. $$\mathbf{s}$$ and $$\mathbf{V}$$ ends up having the same number of elements.
+This method ensures that the sum of the elements of $$\mathbf{s}$$ is 1. The example vector from equation $$\ref{eq:r}$$ thus results in $$\mathbf{s} = \{0.23, 0.22, 0.46, 0.09\}$$. $$\mathbf{s}$$ and $$V$$ ends up having the same number of elements.
 
 With the scaling vector $$\mathbf{s}$$ constructed from the random vector $$\mathbf{r}$$, a new sample point can the be drawn from within the simplex, as:
 
