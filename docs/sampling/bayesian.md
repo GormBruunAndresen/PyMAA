@@ -16,7 +16,7 @@ mathjax: True
 
 > **Note:** Bayesian Bootstrap is not suited for high-dimension polytopes (6+ dimensions) because the convex hull must be calculated, and QuickHull cant handle high dimensions.
 
-Bayesian Bootstrap sampling works by calculating the convex hull representation of the polytope. Then, all simplexes that constitude the convex hull are sampled. The simplexes are obtained using Delaunay Triangulation, and the number of samples to draw from a simplex is determined by the share of the total volume for the simplex. 
+Bayesian Bootstrap sampling works by calculating the convex hull of the polytope, from the v-representation (vertices) of the polytope. Then, the simplexes that consititute the polytope are obtained using Delaunay Triangulation. Each simplex is sampled individually, and the number of samples to draw from a simplex is determined by the share of the total volume for the simplex. 
 
 Each simplex, $$P$$, is represented by its vertices, $$P = \{p^1, p^2, ..., p^{d+1}\}$$, where $$d$$ is the dimension of the polytope from which the simplexes originate.  The vectors pointing to these vertices are contained in the set of vectors, $$V = \{\mathbf{V}_1, \mathbf{V}_2, ..., \mathbf{V}_{d+1} \}$$. These vectors will be used to draw a random sample, once they have been scaled using the scaling vector, $$\mathbf{s}$$. 
 
@@ -47,9 +47,9 @@ $$
 \end{equation}
 $$
 
-To draw a new, differenet sample, simply create new random elements in $$\mathbf{r}$$, construct a new $$\mathbf{s}$$, and calculate a new point.
+To draw a new, differenet sample, simply create new random elements in $$\mathbf{r}$$, construct a new $$\mathbf{s}$$, and calculate a new point. This process is repeated for each simplex, with more samples drawn from larger simplices according to how large a share of the polytope volume each simplex is.
 
-Bayesian Bootstrap sampling is illustrated here:
+Bayesian Bootstrap sampling of a single simplex is illustrated here:
 
 ![](bayesian_example.png)
 
